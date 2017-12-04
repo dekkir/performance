@@ -33,7 +33,7 @@ public class CommonStepDefinition extends AbstractStepDefinition{
 
     protected void exitSystem(String userType) throws Exception{
         SelenideElement logOutButton = null;
-        if(userType.equals("customer")) $(By.id(customerLogOutButtonId));
+        if(userType.equals("customer")) logOutButton = $(By.id(customerLogOutButtonId));
         else logOutButton = $(By.id(supplierLogOutButtonId));
         logOutButton.click();
         waitForLoadingImage();

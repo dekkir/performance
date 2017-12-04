@@ -20,7 +20,7 @@ public abstract class CommonPage{
     protected final static String commonXPathEnding = "')]";
     protected static WebDriver driver;
     protected Timer timer = new Timer();
-    protected static final String commonDocument = "C:/Users/User3/IdeaProjects/_44rts/target/classes/helpers/doc.docx";
+    protected static final String commonDocument = "C:/Users/User3/IdeaProjects/Pr44/src/main/java/helpers/doc.docx";
     protected static final String downloadsCatalogPath = "C:/Users/User3/Downloads";
     protected static final String supplierLogOutButtonId = "BaseMainContent_ucHeaderControl_lbLogoutText";
     protected static final String customerLogOutButtonId = "header__authorization_loguot";

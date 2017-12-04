@@ -1,7 +1,7 @@
 Feature: performance test 1, collecting metric to excel file
 
   Scenario: go through all auction activities and open some other parts of site
-    Given Создается файл для метрик
+    #Given Создается файл для метрик
 
     When Заказчик входит в систему со снятием метрик
     And Заказчик снимает метрики
@@ -85,3 +85,5 @@ Feature: performance test 1, collecting metric to excel file
     And Заказчик открывает контракт через треугольник 'Подпишите контракт
     Then Заказчик подписывает контракт
     And Заказчик выходит из системы
+
+    #Then Закрытие файла отчета

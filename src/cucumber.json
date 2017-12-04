@@ -1,0 +1,774 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 3792125836,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberTestBeforeAndAfter.setUp()"
+            }
+          }
+        ],
+        "line": 3,
+        "name": "go through all auction activities and open some other parts of site",
+        "description": "",
+        "id": "performance-test-1,-collecting-metric-to-excel-file;go-through-all-auction-activities-and-open-some-other-parts-of-site",
+        "after": [
+          {
+            "result": {
+              "duration": 1990924985,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CucumberTestBeforeAndAfter.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 40813887381,
+              "status": "passed"
+            },
+            "comments": [
+              {
+                "line": 4,
+                "value": "#Given Создается файл для метрик"
+              }
+            ],
+            "line": 6,
+            "name": "Заказчик входит в систему со снятием метрик",
+            "match": {
+              "location": "StepsDefinitions.customerEntersSystemWithReport()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 16837846879,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Заказчик снимает метрики",
+            "match": {
+              "location": "StepsDefinitions.customerCollectMetrics()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 145106413140,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "Заказчик создает три аукциона",
+            "match": {
+              "location": "StepsDefinitions.customerCreatesAuction()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 275788222454,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "Заказчик получает информацию о созданных аукционах",
+            "match": {
+              "location": "StepsDefinitions.customerGetsInfoAboutAuctions()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 379980,
+              "error_message": "java.lang.NullPointerException\r\n\tat steps.CommonStepDefinition.exitSystem(CommonStepDefinition.java:38)\r\n\tat steps.StepsDefinitions.customerExitSystem(StepsDefinitions.java:166)\r\n\tat ✽.Then Заказчик выходит из системы(performance.feature:10)\r\n",
+              "status": "failed"
+            },
+            "line": 10,
+            "name": "Заказчик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.customerExitSystem()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 12,
+            "name": "Поставщик 1 входит в систему со снятием метрик",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "Поставщик снимает метрики о заявках",
+            "match": {
+              "location": "StepsDefinitions.supplierCollectsMetricsAboutApplications()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "name": "Поставщик подает заявку на участие в торгах со снятием метрик",
+            "match": {
+              "location": "StepsDefinitions.supplierCreatesApplicationWithReport()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "name": "Поставщик подает заявку на участие в торгах",
+            "match": {
+              "location": "StepsDefinitions.supplierCreatesApplication()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 16,
+            "name": "Поставщик подает запрос на разъяснение документации",
+            "match": {
+              "location": "StepsDefinitions.supplierCreatesDocumentExplainingRequest()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 17,
+            "name": "Поставщик снимает метрики о торгах и контрактах",
+            "match": {
+              "location": "StepsDefinitions.supplierCollectsMetricsAboutContracts()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 18,
+            "name": "Поставщик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.supplierExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 20,
+            "name": "Поставщик 2 входит в систему",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 21,
+            "name": "Поставщик подает заявку на участие в торгах",
+            "match": {
+              "location": "StepsDefinitions.supplierCreatesApplication()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 22,
+            "name": "Поставщик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.supplierExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 24,
+            "name": "Администратор входит в систему",
+            "match": {
+              "location": "StepsDefinitions.adminEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 25,
+            "name": "Администратор открывает страницу ускорения процедур",
+            "match": {
+              "location": "StepsDefinitions.adminOpensAccelerationPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 26,
+            "name": "Администратор ускоряет закупки до этапа рассмотрения заявок",
+            "match": {
+              "location": "StepsDefinitions.adminAcceleratesTradeToApplicationsReception()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 27,
+            "name": "Администратор выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.adminExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 29,
+            "name": "Заказчик входит в систему",
+            "match": {
+              "location": "StepsDefinitions.customerEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 30,
+            "name": "Заказчик открывает форму протокола рассмотрения заявок со снятием метрик",
+            "match": {
+              "location": "StepsDefinitions.customerOpensConsiderationFormWithReport()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "name": "Заказчик создает протокол рассмотрения двух заявок",
+            "match": {
+              "location": "StepsDefinitions.customerCreatesProtocolWithTwoApplications()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "comments": [
+              {
+                "line": 32,
+                "value": "#  And Заказчик открывает форму протокола рассмотрения заявок по закупке с номером"
+              }
+            ],
+            "line": 33,
+            "name": "Заказчик создает протокол рассмотрения одной заявки",
+            "match": {
+              "location": "StepsDefinitions.customerCreatesProtocolWithOneApplication()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "comments": [
+              {
+                "line": 34,
+                "value": "#  And Заказчик открывает форму протокола рассмотрения заявок по закупке с номером"
+              }
+            ],
+            "line": 35,
+            "name": "Заказчик создает протокол о признании закупки несостоявшейся",
+            "match": {
+              "location": "StepsDefinitions.customerCreatesProtocolWithoutApplications()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 36,
+            "name": "Заказчик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.customerExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 38,
+            "name": "Администратор входит в систему",
+            "match": {
+              "location": "StepsDefinitions.adminEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 39,
+            "name": "Администратор открывает страницу ускорения процедур",
+            "match": {
+              "location": "StepsDefinitions.adminOpensAccelerationPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 40,
+            "name": "Администратор ускоряет закупки до этапа начала торгов",
+            "match": {},
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 41,
+            "name": "Администратор выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.adminExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 43,
+            "name": "Поставщик 1 входит в систему",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 44,
+            "name": "Поставщик открывает страницу подачи ценовых предложений",
+            "match": {
+              "location": "StepsDefinitions.supplierOpensBidSubmitPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 45,
+            "name": "Поставщик подает ценовое предложение на аукционе со снятием метрик",
+            "match": {
+              "location": "StepsDefinitions.supplierSubmitBitWithReport()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 46,
+            "name": "Поставщик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.supplierExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 48,
+            "name": "Поставщик 2 входит в систему",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 49,
+            "name": "Поставщик открывает страницу подачи ценовых предложений",
+            "match": {
+              "location": "StepsDefinitions.supplierOpensBidSubmitPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 50,
+            "name": "Поставщик подает ценовое предложение на аукционе",
+            "match": {
+              "location": "StepsDefinitions.supplierSubmitBid()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 51,
+            "name": "Поставщик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.supplierExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 53,
+            "name": "Администратор входит в систему",
+            "match": {
+              "location": "StepsDefinitions.adminEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 54,
+            "name": "Администратор открывает страницу ускорения процедур",
+            "match": {
+              "location": "StepsDefinitions.adminOpensAccelerationPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 55,
+            "name": "Администратор ускоряет закупки до этапа подведения итогов торгов",
+            "match": {},
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 56,
+            "name": "Администратор выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.adminExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 58,
+            "name": "Заказчик входит в систему",
+            "match": {
+              "location": "StepsDefinitions.customerEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 59,
+            "name": "Заказчик открывает форму протокола подведения итогов торгов",
+            "match": {
+              "location": "StepsDefinitions.customerOpensSummarizingForm()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 60,
+            "name": "Заказчик создает протокол подведения итогов торгов",
+            "match": {
+              "location": "StepsDefinitions.customerCreatesSummarizingProtoc()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 61,
+            "name": "Заказчик отправляет контракт на подпись поставщику",
+            "match": {
+              "location": "StepsDefinitions.customersSendsContract()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 62,
+            "name": "Заказчик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.customerExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 64,
+            "name": "Поставщик 1 входит в систему",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 65,
+            "name": "Поставщик открывает контракт через треугольник \u0027Подпишите контракт\u0027 со снятием метрик",
+            "match": {},
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 66,
+            "name": "Поставщик создает протокол разногласий",
+            "match": {
+              "location": "StepsDefinitions.supplierCreatesDifferencesProtocol()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 67,
+            "name": "Поставщик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.supplierExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 69,
+            "name": "Заказчик входит в систему",
+            "match": {
+              "location": "StepsDefinitions.customerEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 70,
+            "name": "Заказчик открывает контракт через треугольник \u0027Переотправьте контракт\u0027",
+            "match": {
+              "location": "StepsDefinitions.customerOpensContractPageViaTrgResend()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 71,
+            "name": "Заказчик вносит изменения в контракт",
+            "match": {
+              "location": "StepsDefinitions.customerMakesChangesToContract()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 72,
+            "name": "Заказчик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.customerExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 74,
+            "name": "Поставщик 1 входит в систему",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 75,
+            "name": "Поставщик открывает контракт через треугольник \u0027Подпишите контракт\u0027",
+            "match": {
+              "location": "StepsDefinitions.supplierOpensContractPageViaTrgSign()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 76,
+            "name": "Поставщик подписывает контракт",
+            "match": {
+              "location": "StepsDefinitions.supplierSignsContract()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 77,
+            "name": "Поставщик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.supplierExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 79,
+            "name": "Администратор входит в систему",
+            "match": {
+              "location": "StepsDefinitions.adminEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 80,
+            "name": "Администратор открывает страницу сроков подписания контракта",
+            "match": {
+              "location": "StepsDefinitions.adminOpensContractAccelerationPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 81,
+            "name": "Администратор сдвигает регламентный срок подписания контракта",
+            "match": {
+              "location": "StepsDefinitions.adminAcceleratesContractConclusion()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 82,
+            "name": "Администратор выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.adminExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 84,
+            "name": "Заказчик входит в систему",
+            "match": {
+              "location": "StepsDefinitions.customerEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 85,
+            "name": "Заказчик открывает контракт через треугольник \u0027Подпишите контракт",
+            "match": {},
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 86,
+            "name": "Заказчик подписывает контракт",
+            "match": {
+              "location": "StepsDefinitions.customerSignsContract()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 87,
+            "name": "Заказчик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.customerExitSystem()"
+            },
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "performance test 1, collecting metric to excel file",
+    "description": "",
+    "id": "performance-test-1,-collecting-metric-to-excel-file",
+    "keyword": "Feature",
+    "uri": "performance.feature"
+  }
+]

@@ -7,10 +7,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.junit.After;
 import org.junit.Before;
 import javax.naming.directory.InvalidSearchControlsException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +16,7 @@ import static com.codeborne.selenide.Selenide.close;
 public class CucumberTestBeforeAndAfter extends CommonStepDefinition{
 
     private String fileName = "supplierAndCustomerPerformanceTest.txt";
-    private String logsPath = "C://Users//User3//IdeaProjects//_44rts//build//reports//logs//";
+    private String logsPath = "C://Users//User3//IdeaProjects//Pr44//build//reports//logs//";
     private ArrayList<Double> supplierMetricList = new ArrayList<Double>();
     private ArrayList<Double> customerMetricList = new ArrayList<Double>();
     private ExcelStyles excelStyles;
@@ -28,7 +25,7 @@ public class CucumberTestBeforeAndAfter extends CommonStepDefinition{
     private String xlsxFile = logsPath + "report.xlsx";
     private int workCellNumber;
     private static final int dateRowNumber = 3;
-
+    private PrintStream printStream;
 
     private void setWorkCellNumber() {
         //int workCellNumber = 7;
@@ -43,14 +40,21 @@ public class CucumberTestBeforeAndAfter extends CommonStepDefinition{
         }
     }
 
-    @Before
-    public void setUp(){
+    @cucumber.api.java.Before
+    public void setUp() throws IOException{
         Configuration.timeout = 90000;
+        fileName = "supplierAndCustomerPerformanceTest.txt";
+        File file = new File(logsPath + fileName);
+        printStream = new PrintStream(file);
+        System.setOut(printStream);
+        System.out.println("Test starts " + timer.getDateForReport());
     }
 
-    @After
+    @cucumber.api.java.After
     public void tearDown() throws IOException, InvalidFormatException{
         close();
+        System.out.println("Test ends " + timer.getDateForReport());
+        printStream.close();
 
         File file = new File(logsPath + fileName);
         Scanner scanner = new Scanner(file);
