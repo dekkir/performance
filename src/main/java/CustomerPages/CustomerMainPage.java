@@ -37,6 +37,8 @@ public class CustomerMainPage extends CommonPage {
         $(By.xpath(mainMenuItemXPathCreating("ЗАКУПКИ"))).click();
     }
 
+
+
     public void logOut(){
         $(By.id(logOutButtonId)).click();
     }

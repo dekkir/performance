@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class CustomerLogInPage extends CommonLogInPage {
 
-    private static final String currentSupplierCertificateName = "Заказчик для отладки1";
+    private static final String currentSupplierCertificateName = "Заказчик для отладки2";
     private static final String supplierCertificateXPath = "//table[contains(@id,'certlist')]//tr[contains(@data-isvalid,'true')]//td[contains(text(), '";
     private static final String enterButtonId = "submitSignin";
 

@@ -33,6 +33,8 @@ public class SupplierMainPage extends CommonPage {
         $(By.xpath(mainMenuItemXPathCreating("Закупки"))).click();
     }
 
+    protected void mainMenuItemMyOrganizationOpen(){$(By.xpath(mainMenuItemXPathCreating("Моя организация"))).click();}
+
     public void mainMenuItemContractsOpen(){
         $(By.xpath(mainMenuItemXPathCreating("Контракты"))).click();
     }
@@ -56,4 +58,9 @@ public class SupplierMainPage extends CommonPage {
         $(By.id(logOutButtonId)).click();
         Thread.currentThread().sleep(500);
     }
+
+    public void goToSupplierMainPage(){
+        mainMenuItemMyOrganizationOpen();
+    }
+
 }

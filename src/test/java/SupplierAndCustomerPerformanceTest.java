@@ -8,12 +8,12 @@ import CustomerPages.CustomerMasterPage;
 import SupplierPages.*;
 import com.codeborne.selenide.Configuration;
 import helpers.*;
+import pages.*;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.apache.poi.ss.usermodel.*;
-import pages.*;
 import java.io.*;
 import static com.codeborne.selenide.Selenide.*;
 import java.util.*;
@@ -64,42 +64,19 @@ public class SupplierAndCustomerPerformanceTest  extends AbstractTest {
     private AdminContractConclusionAdministrationPage adminContractConclusionAdministrationPage = new AdminContractConclusionAdministrationPage();
 
     private String logsPath = "C://Users//User3//IdeaProjects//_44rts//build//reports//logs//";
-    private Workbook book;
-    private Sheet sheet;
-    private String xlsxFile = logsPath + "report.xlsx";
-    private int workCellNumber;
-    private static final int dateRowNumber = 3;
-    private ArrayList<Double> supplierMetricList = new ArrayList<Double>();
-    private ArrayList<Double> customerMetricList = new ArrayList<Double>();
-    private ExcelStyles excelStyles;
     private String fileName;
 
     public SupplierAndCustomerPerformanceTest(){
         super();
     }
 
-    private void setWorkCellNumber() {
-        //int workCellNumber = 7;
-        Row dateRow = sheet.getRow(dateRowNumber);
-        int cellNumber;
-        for(cellNumber = 7; cellNumber < dateRow.getLastCellNum(); cellNumber++ ){
-            Cell currentCell = dateRow.getCell(cellNumber);
-            if(currentCell.toString().equals("")){
-                this.workCellNumber = cellNumber;
-                return;
-            }
-        }
-    }
 
-    @Before
-    public void settings() {
-        Configuration.timeout = 90000;
-    }
 
     @Test
     public void performanceTest() throws Exception {
 
-        fileName = "supplierAndCustomerPerformanceTest" + timer.getDate() + ".txt";
+        //fileName = "supplierAndCustomerPerformanceTest" + timer.getDate() + ".txt";
+        fileName = "supplierAndCustomerPerformanceTest.txt";
         File file = new File(logsPath + fileName);
         PrintStream printStream = new PrintStream(file);
         System.setOut(printStream);
@@ -162,75 +139,7 @@ public class SupplierAndCustomerPerformanceTest  extends AbstractTest {
 
     @After
     public void reportCreating() throws IOException, InvalidFormatException{
-        close();
 
-        File file = new File(logsPath + fileName);
-        Scanner scanner = new Scanner(file);
-        while(scanner.hasNextLine()) {
-            String currentString = scanner.nextLine();
-            if(currentString.startsWith(" ")){
-                continue;
-            }
-            else if(currentString.startsWith("Поставщик выполняет вход")) {
-                ArrayList<Long> list = new ArrayList<Long>();
-                for (int i = 0; i <= 2; i++)
-                    list.add(new Long(scanner.nextLine()));
-                supplierMetricList.add(timer.getDifference(list.get(1), list.get(0)) - timer.getDifference(list.get(2), list.get(1)));
-            }
-            else if(currentString.startsWith("Поставщик")){
-                ArrayList<Long> list = new ArrayList<Long>();
-                for (int i = 0; i <= 1; i++)
-                    list.add(new Long(scanner.nextLine()));
-                supplierMetricList.add(timer.getDifference(list.get(1), list.get(0)));
-            }
-            else if(currentString.startsWith("Заказчик выполняет вход")) {
-                ArrayList<Long> list = new ArrayList<Long>();
-                for (int i = 0; i <= 2; i++)
-                    list.add(new Long(scanner.nextLine()));
-                customerMetricList.add(timer.getDifference(list.get(1), list.get(0)) - timer.getDifference(list.get(2), list.get(1)));
-            }
-            else if(currentString.startsWith("Заказчик")){
-                ArrayList<Long> list = new ArrayList<Long>();
-                for (int i = 0; i <= 1; i++)
-                    list.add(new Long(scanner.nextLine()));
-                customerMetricList.add(timer.getDifference(list.get(1), list.get(0)));
-            }
-        }
-        scanner.close();
-        String[] sheets = {"Supplier", "Customer"};
-        String reportDate = timer.getDateForReport();
-        for(int i = 0; i <= 1; i++) {
-            FileInputStream inputStream = new FileInputStream(new File(xlsxFile));
-            book = WorkbookFactory.create(inputStream);
-            sheet = book.getSheet(sheets[i]);
-            setWorkCellNumber();
-            excelStyles = new ExcelStyles(book);
-            int currentDateRowNumber = dateRowNumber;
-            Row dateRow = sheet.getRow(currentDateRowNumber++);
-            Cell dateCell = dateRow.getCell(workCellNumber);
-            dateCell.setCellValue(reportDate);
-            final int indicatorCellNumber = 6;
-            ArrayList<Double> currentMetricsList;
-            if(i == 0)
-                currentMetricsList = supplierMetricList;
-            else
-                currentMetricsList = customerMetricList;
-            for (double currentMetric : currentMetricsList) {
-                Row currentRow = sheet.getRow(currentDateRowNumber++);
-                Cell currentCell = currentRow.getCell(workCellNumber);
-                currentCell.setCellValue(currentMetric);
-                Cell comparedCell = currentRow.getCell(indicatorCellNumber);
-                if ((Double.valueOf(comparedCell.toString()) >= currentMetric))
-                    currentCell.setCellStyle(excelStyles.styleForGoodResult(book));
-                else
-                    currentCell.setCellStyle(excelStyles.styleForBadResult(book));
-            }
-            inputStream.close();
-            FileOutputStream outputStream = new FileOutputStream(xlsxFile);
-            book.write(outputStream);
-            book.close();
-            outputStream.close();
-        }
     }
 
     private String customerCreatesAuction(boolean mainAuction, int auctionNumber) throws Exception{
