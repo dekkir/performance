@@ -1,11 +1,14 @@
 package steps;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.junit.BrowserStrategy;
 import helpers.ExcelStyles;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.ClassRule;
+
 import javax.naming.directory.InvalidSearchControlsException;
 import java.io.*;
 import java.util.ArrayList;
@@ -40,22 +43,27 @@ public class CucumberTestBeforeAndAfter extends CommonStepDefinition{
         }
     }
 
+    @ClassRule
+    public static BrowserStrategy perClass = new BrowserStrategy();
+
     @cucumber.api.java.Before
     public void setUp() throws IOException{
         Configuration.timeout = 90000;
-        fileName = "supplierAndCustomerPerformanceTest.txt";
+        /*fileName = "supplierAndCustomerPerformanceTest.txt";
         File file = new File(logsPath + fileName);
         printStream = new PrintStream(file);
         System.setOut(printStream);
         System.out.println("Test starts " + timer.getDateForReport());
+    */
     }
 
     @cucumber.api.java.After
     public void tearDown() throws IOException, InvalidFormatException{
         close();
+       /*
         System.out.println("Test ends " + timer.getDateForReport());
         printStream.close();
-
+*/
         File file = new File(logsPath + fileName);
         Scanner scanner = new Scanner(file);
         while(scanner.hasNextLine()) {

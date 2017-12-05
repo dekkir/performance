@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage extends CommonPage{
 
-    private static final String homePage = "https://servicing.rts-tender.ru";
+    private static final String homePage = "https://stable.rts-tender.ru";
     private static final String loginButton = "a[href='/login']";
 
     public MainPage(){

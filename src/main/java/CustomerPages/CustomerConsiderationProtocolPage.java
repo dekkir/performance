@@ -21,7 +21,7 @@ public class CustomerConsiderationProtocolPage extends CustomerTenderCard{
 
     public void isPageLoaded(){
         $(By.id(signAndPublishProtocolButtonId)).shouldBe(Condition.visible);
-        $(By.id(exportApplicationsAsWordButtonId)).shouldBe(Condition.visible);
+        $(By.id(allApplicationsAllowButtonId)).shouldBe(Condition.visible);
     }
 
     private void allowAllApplications() throws Exception{

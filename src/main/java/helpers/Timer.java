@@ -27,7 +27,7 @@ public class Timer {
 
     public String getOnlyDate(){
         long currentTime = System.currentTimeMillis();
-        String currentDateString = new SimpleDateFormat("dd.MM.yyyy").format(currentTime);
+        String currentDateString = new SimpleDateFormat("dd.MM.yy").format(currentTime);
         return currentDateString;
     }
 
@@ -51,7 +51,7 @@ public class Timer {
 
     public String getDateForReport(){
         long currentTime = System.currentTimeMillis();
-        String currentDateString = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(currentTime);
+        String currentDateString = new SimpleDateFormat("dd.MM.yy HH:mm").format(currentTime);
         return currentDateString;
     }
 

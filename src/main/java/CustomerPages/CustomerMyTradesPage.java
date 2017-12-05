@@ -78,10 +78,20 @@ public class CustomerMyTradesPage extends CustomerMainPage {
         $(By.xpath(firstFitTradeByNumberXPath + tradeNumber + commonXPathEnding)).click();
     }
 
+    private void setDateFieldForSearch() throws Exception{
+        SelenideElement dat = $(By.id("PublishDateFrom"));
+
+        //setFocusInKendoNumericTextBoxJS("PublishDateFrom");
+        dat.clear();
+        dat.sendKeys(timer.getOnlyDate());
+        dat.shouldHave(Condition.value(timer.getOnlyDate()));
+    }
+
     public void searchAndOpenTradeByTradeName(String tradeName, boolean timeReport) throws Exception {
         this.tradeName = tradeName;
         this.timeReport = timeReport;
         isPageLoaded();
+        setDateFieldForSearch();
         setTradeNameTextFieldForSearch();
         tradeSearchByTradeName();
         firstFitTradeOpenByName();
@@ -149,10 +159,13 @@ public class CustomerMyTradesPage extends CustomerMainPage {
 
     private void selectFewApplications() throws Exception{
         Thread.currentThread().sleep(2000);
+        setDateFieldForSearch();
+        $(searchButton).click();
+        Thread.currentThread().sleep(3000);
         ElementsCollection applications = $$(applicationCheckBox);
         int i = 0;
         for(SelenideElement currentApplication : applications){
-            if(i >= 3) break;
+            if(i >= 2) break;
             Actions builder = new Actions(driver);
             builder.moveToElement(currentApplication, 2, 2).click().build().perform();
             Thread.currentThread().sleep(200);

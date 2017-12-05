@@ -9,7 +9,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class CustomerAuctionCreatingPage extends CustomerMasterPage{
 
-    private static final String tradeName = "Тест производительности ";
+    private static final String tradeName = "Автотест отложенных заявок ";
+            //"Тест производительности ";
     private static final String phoneCityCode = "123";
     private static final String phoneNumber = "1231231";
     private static String tradeNameFinal;
@@ -76,10 +77,7 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
     }
 
     private void tradeNaming(){
-        if(auctionNumber == 0)
-            tradeNameFinal = tradeName + timer.getDateForReport();
-        else
-            tradeNameFinal = tradeName + timer.getDateForReport() + " " + auctionNumber;
+        tradeNameFinal = tradeName + timer.getDateForReport() + " " + auctionNumber;
         $(tradeNameTextField).setValue(tradeNameFinal);
     }
 
@@ -206,9 +204,12 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
         nextStepPassing();
         tradeObjectInfoFilling();
         nextStepPassing();
+        Thread.currentThread().sleep(2000);
         nextStepPassing();
+
         documentationAdding();
         nextStepPassing();
+        Thread.currentThread().sleep(2000);
         nextStepPassing();
         sendToEIS();
         mainMenuItemCustomerMasterOpen();

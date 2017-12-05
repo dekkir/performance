@@ -33,7 +33,7 @@ public class SupplierMainPage extends CommonPage {
         $(By.xpath(mainMenuItemXPathCreating("Закупки"))).click();
     }
 
-    protected void mainMenuItemMyOrganizationOpen(){$(By.xpath(mainMenuItemXPathCreating("Моя организация"))).click();}
+    private void mainMenuItemMyOrganizationOpen(){$(By.xpath(mainMenuItemXPathCreating("Моя организация"))).click();}
 
     public void mainMenuItemContractsOpen(){
         $(By.xpath(mainMenuItemXPathCreating("Контракты"))).click();
@@ -42,6 +42,11 @@ public class SupplierMainPage extends CommonPage {
     public void mainMenuMyApplicationsOpen(){
         mainMenuItemTradesOpen();
         $(By.xpath(secondaryMenuItemXPathCreating("Закупки", "Мои заявки"))).click();
+    }
+
+    public void mainMenuOrganizationInfoOpen(){
+        mainMenuItemMyOrganizationOpen();
+        $(By.xpath(secondaryMenuItemXPathCreating("Моя организация", "Информация об организации"))).click();
     }
 
     public void mainMenuMyTradesOpen(){
@@ -60,7 +65,7 @@ public class SupplierMainPage extends CommonPage {
     }
 
     public void goToSupplierMainPage(){
-        mainMenuItemMyOrganizationOpen();
+        mainMenuOrganizationInfoOpen();
     }
 
 }
