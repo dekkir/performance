@@ -1,6 +1,7 @@
 package SupplierPages;
 
 import com.codeborne.selenide.Condition;
+import gherkin.lexer.Th;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -11,6 +12,7 @@ public class SupplierTradeSearchPage extends SupplierMainPage {
     private static final String firstFitTrade = "table#jqgTrades tr td div.relative.with_favorite a";
     private static final String searchButton = "BaseMainContent_MainContent_btnSearch";
     private static final String tradesQuantityOnPageSelector = ".ui-pg-selbox";
+    private static final String applicationFormOpenButtonXPath = "//a[contains(text(), 'Подать заявку')]";
     private static String tradeNumber;
 
     public SupplierTradeSearchPage(){ super(); }
@@ -36,13 +38,25 @@ public class SupplierTradeSearchPage extends SupplierMainPage {
         $(firstFitTrade).click();
         Thread.currentThread().sleep(2000);
         helpers.WebDriverContainer.getInstance().switchToNewWindowAndCloseOldWindow();
+        //helpers.WebDriverContainer.getInstance().switchToNewWindow();
     }
 
-    public void searchAndOpenByTradeName(String tradeNumber) throws Exception{
+    public void searchAndOpenByTradeNumber(String tradeNumber) throws Exception{
         this.tradeNumber = tradeNumber;
         isPageLoaded();
         setTradeNumberForSearch();
         tradeSearch();
         firstFitTradeOpen();
     }
+
+    public void searchAndOpenApplicationForm(String tradeNumber) throws Exception{
+        this.tradeNumber = tradeNumber;
+        isPageLoaded();
+        setTradeNumberForSearch();
+        tradeSearch();
+        $(By.xpath(applicationFormOpenButtonXPath)).click();
+        Thread.currentThread().sleep(1500);
+        helpers.WebDriverContainer.getInstance().switchToNewWindow();
+    }
+
 }

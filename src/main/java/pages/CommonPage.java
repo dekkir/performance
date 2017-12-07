@@ -31,7 +31,7 @@ public abstract class CommonPage{
     protected int delayTime300 = 300000; //30000
     protected long pollingIntervalMs = 50;
     protected int timeForIsDisplay1 = 5;
-    protected int timeForIsDisplay2 = 15; //30
+    protected int timeForIsDisplay2 = 5; //30
 
     protected void exitSystem(String userType) throws Exception{
         SelenideElement logOutButton = null;
@@ -96,13 +96,18 @@ public abstract class CommonPage{
         System.out.println(timer.getCurrentTimeMillis());
     }
 
+    protected void clickInElementJS(SelenideElement element) throws Exception {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        TimeUnit.SECONDS.sleep(3);
+    }
+
     protected void waitForLoadingImage() throws Exception {
         String functionName = " [-]: ";
         SelenideElement element1 = $(By.xpath(LOADING_XPATH));
         SelenideElement element2 = $(By.xpath(LOADING_1_XPATH));
         SelenideElement elementLoading3 = $(By.xpath(loadingString2Xpath));
         SelenideElement spinnerWrapAfterLogIn = $("div#loading-wrap");
-        driver.manage().timeouts().implicitlyWait(timeForIsDisplay1, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(timeForIsDisplay1, TimeUnit.SECONDS);
 
         if((spinnerWrapAfterLogIn).exists()){
             spinnerWrapAfterLogIn.waitUntil(not(exist), delayTimeMs, pollingIntervalMs);

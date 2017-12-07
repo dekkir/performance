@@ -6,16 +6,13 @@ import CustomerPages.CustomerLogInPage;
 import CustomerPages.CustomerMainPage;
 import CustomerPages.CustomerMasterPage;
 import SupplierPages.*;
-import com.codeborne.selenide.Configuration;
 import helpers.*;
 import pages.*;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.apache.poi.ss.usermodel.*;
+
 import java.io.*;
-import static com.codeborne.selenide.Selenide.*;
 import java.util.*;
 import CustomerPages.*;
 
@@ -156,7 +153,7 @@ public class SupplierAndCustomerPerformanceTest  extends AbstractTest {
             customerMainPage.mainMenuItemTradesOpen();
             customerMyTradesPage.isPageLoaded();
             System.out.println(timer.getCurrentTimeMillis());
-            customerMyTradesPage.downloadApplications();
+            customerMyTradesPage.downloadApplications(tradeNumber);
             System.out.println("Заказчик открывает реестр контрактов");
             customerMyTradesPage.mainMenuItemContractsOpen();
             System.out.println(timer.getCurrentTimeMillis());
@@ -219,7 +216,7 @@ public class SupplierAndCustomerPerformanceTest  extends AbstractTest {
             supplierMainPage.isLoggedIn();
             //Поиск в разделе "Поиск закупок"
             supplierMainPage.mainMenuTradeSearchOpen();
-            supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
+            supplierTradeSearchPage.searchAndOpenByTradeNumber(tradeNumber);
             //Подача заявки на аукцион
             supplierTenderCard.isPageLoaded();
             supplierTenderCard.applicationAdd();
@@ -227,7 +224,7 @@ public class SupplierAndCustomerPerformanceTest  extends AbstractTest {
                 supplierApplicationAddingPage.createApplication(true);
                 //System.out.println(timer.getCurrentTimeMillis());
                 supplierApplicationAddingPage.mainMenuTradeSearchOpen();
-                supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
+                supplierTradeSearchPage.searchAndOpenByTradeNumber(tradeNumber);
                 supplierTenderCard.applicationOpen();
                 supplierApplicationPage.withdrawAndRecreateApplication();
                 supplierMainPage.logOut();
@@ -249,7 +246,7 @@ public class SupplierAndCustomerPerformanceTest  extends AbstractTest {
         supplierMainPage.isLoggedIn();
         supplierApplicationAddingPage.mainMenuTradeSearchOpen();
         //Отправка запроса на разъяснение документации
-        supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
+        supplierTradeSearchPage.searchAndOpenByTradeNumber(tradeNumber);
         supplierTenderCard.addDocumentsExplainingRequest();
         supplierDocumentsExplainingRequest.createRequest();
         supplierTenderCard.logOut();
@@ -336,7 +333,7 @@ public class SupplierAndCustomerPerformanceTest  extends AbstractTest {
             supplierMainPage.isLoggedIn();
             //Поиск в разделе "Поиск закупок"
             supplierMainPage.mainMenuTradeSearchOpen();
-            supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
+            supplierTradeSearchPage.searchAndOpenByTradeNumber(tradeNumber);
             //Подача заявки на аукцион
             supplierTenderCard.isPageLoaded();
             supplierTenderCard.auctionInfoOpen();

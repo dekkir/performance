@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class CustomerAuctionCreatingPage extends CustomerMasterPage{
 
-    private static final String tradeName = "Автотест отложенных заявок ";
+    private static final String tradeName = "Тест производительности ";
             //"Тест производительности ";
     private static final String phoneCityCode = "123";
     private static final String phoneNumber = "1231231";
@@ -17,6 +17,7 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
     private static int auctionNumber;
     private static final String purchaseId = "111111111111111111111111111111111111";
     private static final String purchaseStartingSum = "100,00";
+    private static final String applicationProvisionValue = "5,00";
     private static final String destinationPlaceForProduct = "место";
     private static final String deadlineForProductDelivery = "10.10";
     private static final String customerInn = "4205081030";
@@ -45,6 +46,7 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
     private static final String customerRequirementWindow = "span#CustomerWindow_wnd_title~div>a>span.k-icon.k-i-close";
     private static final String purchaseIdTextFieldId = "PurchaseCode";
     private static final String purchaseStartingSumTextFieldId = "CustomerContractSum";
+    private static final String applicationProvisionTextFieldId = "ApplicationProvision_Percent";
     private static final String destinationPlaceForProductTextFieldId = "Place";
     private static final String deadlineForProductDeliveryTextFieldId = "Deadlines";
     private static final String textFieldFillingButton = "div#AddCustomerBlock div.form-horizontal div.well div.form-group span div.form-block button.k-button.button-in-text";
@@ -57,6 +59,7 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
     private static final String selectCustomerButtonId = "SelectCustomerWindowButton";
     private static final String saveCustomerRequirementButton = "div#AddCustomerBlock > div.buttons-wrap > button";
     private static final String okpdCodeTextFieldId = "Okpd2Code";
+    private static final String okpdNameTextField = "#Okpd2Success>span";
     private static final String tradeNameTextFieldId = "Name";
     private static final String measurementSelector = "span.k-icon.k-i-arrow-s";
     private static final String measurementOptionKg = "li.k-item[data-offset-index='120']";
@@ -65,6 +68,8 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
     private static final String productAddingButtonId = "add-product";
     private static final String addedProduct = "div#layoutwrapper.layout.blockCenter div.well div#ProductsGrid.k-grid.k-widget table tr td button.k-button.k-state-default";
 
+    private static final String currentStepTextField = "div#sliderContainer~div>h2:first-of-type";
+    private static final String restrictionTextFieldId = "FZ44_4_42";
     private static final String documentAddingButton = "input[accept]";
     private static final String fileDeletingButton = "div#FilesGrid table tbody tr td a[onclick]";
     private static final String sendingToEISButtonId = "loginbutton";
@@ -96,11 +101,18 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
 
     private void settingsFieldsForApplicationSubmittingFilling() throws Exception{
         $(By.id(placeForApplicationSubmittingFormFillTextFieldId)).click();
-        $(By.id(placeForApplicationSubmittingFormFillButtonId)).click();
-        Thread.currentThread().sleep(500);
+        for(int i = 0; i < 10; i++){
+            $(By.id(placeForApplicationSubmittingFormFillButtonId)).click();
+            if(!$(By.id(placeForApplicationSubmittingFormFillTextFieldId)).getAttribute("value").equals("")) break;
+            else Thread.currentThread().sleep(1000);
+        }
         $(By.id(orderOfApplicationSubmittingFormFillTextFieldId)).click();
-        $(By.id(orderOfApplicationSubmittingFormFillButtonId)).click();
-        Thread.currentThread().sleep(500);
+        for(int i = 0; i < 10; i++){
+            $(By.id(orderOfApplicationSubmittingFormFillButtonId)).click();
+            if(!$(By.id(orderOfApplicationSubmittingFormFillTextFieldId)).getAttribute("value").equals("")) break;
+            else Thread.currentThread().sleep(1000);
+        }
+        //Thread.currentThread().sleep(500);
     }
 
     private void dateFieldsFilling() throws InterruptedException{
@@ -111,7 +123,6 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
         Thread.currentThread().sleep(1000);
         if($(By.id(auctionStartingDateFieldId)).getValue().equals(""))
             Thread.currentThread().sleep(1000);
-
     }
 
     private void financeSourceFilling() throws InterruptedException{
@@ -145,6 +156,11 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
         purchaseSumTextField.setValue(purchaseStartingSum);
         $(By.id(destinationPlaceForProductTextFieldId)).setValue(destinationPlaceForProduct);
         $(By.id(deadlineForProductDeliveryTextFieldId)).setValue(deadlineForProductDelivery);
+        setFocusInKendoNumericTextBoxJS(applicationProvisionTextFieldId);
+        SelenideElement applicationProvisionTextField = $(By.id(applicationProvisionTextFieldId));
+        applicationProvisionTextField.clear();
+        applicationProvisionTextField.click();
+        applicationProvisionTextField.setValue(applicationProvisionValue);
         $$(textFieldFillingButton).get(0).click();
         $$(textFieldFillingButton).get(1).click();
         $(saveCustomerRequirementButton).click();
@@ -153,7 +169,7 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
 
     private void tradeObjectInfoFilling() throws Exception{
         $(By.id(okpdCodeTextFieldId)).setValue(okpdCode);
-        Thread.currentThread().sleep(500);
+        $(okpdNameTextField).shouldHave(Condition.text("Зерно озимой твердой пшеницы"));
         $(By.id(okpdCodeTextFieldId)).pressTab();
         Thread.currentThread().sleep(500);
         $(By.id(tradeNameTextFieldId)).setValue(tradeName);
@@ -189,6 +205,10 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
         $(By.id(sendingToEISButtonId)).shouldBe(Condition.visible).click();
     }
 
+    public void CreateNewEAUsingTemplate() throws Exception{
+        tradeNaming();
+    }
+
     public String createNewEA(int auctionNumber) throws Exception{
         this.auctionNumber = auctionNumber;
         tradeNaming();
@@ -204,12 +224,11 @@ public class CustomerAuctionCreatingPage extends CustomerMasterPage{
         nextStepPassing();
         tradeObjectInfoFilling();
         nextStepPassing();
-        Thread.currentThread().sleep(2000);
+        $(By.id(restrictionTextFieldId)).shouldBe(Condition.visible);
         nextStepPassing();
-
         documentationAdding();
         nextStepPassing();
-        Thread.currentThread().sleep(2000);
+        $(currentStepTextField).shouldHave(Condition.text("шаг 8 из 8"));
         nextStepPassing();
         sendToEIS();
         mainMenuItemCustomerMasterOpen();

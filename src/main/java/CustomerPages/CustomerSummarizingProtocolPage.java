@@ -41,7 +41,7 @@ public class CustomerSummarizingProtocolPage extends CustomerTenderCard{
         $(By.id(signAndPublishProtocolButtonId)).click();
         $(By.id(signAndPublishProtocolInPopUpButtonId)).shouldBe(Condition.visible).click();
         System.out.println(timer.getCurrentTimeMillis());
-        Thread.currentThread().sleep(400);
+        Thread.currentThread().sleep(1000);
         $(By.id(successButtonId)).shouldBe(Condition.visible);
         System.out.println(timer.getCurrentTimeMillis());
         $(By.id(successButtonId)).click();

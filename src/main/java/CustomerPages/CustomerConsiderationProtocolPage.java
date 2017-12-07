@@ -14,6 +14,7 @@ public class CustomerConsiderationProtocolPage extends CustomerTenderCard{
     private static final String signAndPublishProtocolButtonId = "publishAndSignProtocol";
     private static final String signAndPublishProtocolInPopUpButtonId = "publishAndSignPreviewProtocolButton";
     private static final String successButtonId = "CommonErrorWindowOk";
+    private static final String saveProtocolButtonId = "saveProtocol";
     private static final String exportApplicationsAsWordButtonId = "ExportDocumentsAsWord";
     private static int numberOfParticipants = 2;
 
@@ -21,7 +22,7 @@ public class CustomerConsiderationProtocolPage extends CustomerTenderCard{
 
     public void isPageLoaded(){
         $(By.id(signAndPublishProtocolButtonId)).shouldBe(Condition.visible);
-        $(By.id(allApplicationsAllowButtonId)).shouldBe(Condition.visible);
+        $(By.id(saveProtocolButtonId)).shouldBe(Condition.visible);
     }
 
     private void allowAllApplications() throws Exception{

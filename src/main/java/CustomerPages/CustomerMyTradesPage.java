@@ -12,6 +12,9 @@ public class CustomerMyTradesPage extends CustomerMainPage {
     private static final String tradeNameTextFieldId = "TradeLotName";
     private static final String tradeNumberTextFieldId = "NoticeNumber";
     private static final String searchButton = "input.searchButton";
+    private static final String publishDateTextFieldId = "PublishDateFrom";
+    private static final String considerationFilterButton = "div#tabs>a:nth-of-type(3)";
+    private static final String receptionFilterButton = "div#tabs>a:nth-of-type(2)";
     private static final String firstFitTradeByNameXPath = "//div[contains(@id, 'CustomKendoGrid')]//table//td[contains(@role,'gridcell')]//div[contains(text(),'";
     private static final String firstFitTradeByNameXPathEnding = "')]//parent::td//preceding-sibling::td[contains(@class,'notice-number')]/a";
     private static final String firstFitTradeByNumberXPath = "//table//a[contains(text(),'";
@@ -26,6 +29,8 @@ public class CustomerMyTradesPage extends CustomerMainPage {
     private static final String downloadDocsButton = "#undefined_top div a[onclick*='UploadDocumentsArchive']";
     private static final String downloadDocsButtonInPopUpId = "StartArchiveDownloadingButton";
     private static final String cancelDownloadButtonId = "CancelArchiveDownloadingButton";
+    private static final String startPriceFieldId = "StartPriceFrom";
+    private static final String endPriceFieldId = "StartPriceTo";
     private static String tradeName;
     private static String tradeNumber;
     private static boolean timeReport = false;
@@ -36,7 +41,7 @@ public class CustomerMyTradesPage extends CustomerMainPage {
         $(By.id(tradeNameTextFieldId)).shouldBe(Condition.visible);
     }
 
-    private void setTradeNameTextFieldForSearch(){
+    private void setTradeNameTextFieldForSearch(String tradeName){
         $(By.id(tradeNameTextFieldId)).setValue(tradeName);
         $(By.id(tradeNameTextFieldId)).shouldHave(Condition.value(tradeName));
     }
@@ -79,8 +84,7 @@ public class CustomerMyTradesPage extends CustomerMainPage {
     }
 
     private void setDateFieldForSearch() throws Exception{
-        SelenideElement dat = $(By.id("PublishDateFrom"));
-
+        SelenideElement dat = $(By.id(publishDateTextFieldId));
         //setFocusInKendoNumericTextBoxJS("PublishDateFrom");
         dat.clear();
         dat.sendKeys(timer.getOnlyDate());
@@ -91,8 +95,10 @@ public class CustomerMyTradesPage extends CustomerMainPage {
         this.tradeName = tradeName;
         this.timeReport = timeReport;
         isPageLoaded();
-        setDateFieldForSearch();
-        setTradeNameTextFieldForSearch();
+        //setDateFieldForSearch();
+        $(receptionFilterButton).click();
+        waitForLoadingImage();
+        setTradeNameTextFieldForSearch(tradeName);
         tradeSearchByTradeName();
         firstFitTradeOpenByName();
     }
@@ -157,11 +163,23 @@ public class CustomerMyTradesPage extends CustomerMainPage {
         System.out.println(timer.getCurrentTimeMillis());
     }
 
+    private void setPriceFields() throws Exception{
+        setFocusInKendoNumericTextBoxJS(startPriceFieldId);
+        $(By.id(startPriceFieldId)).setValue("100,00");
+        setFocusInKendoNumericTextBoxJS(endPriceFieldId);
+        $(By.id(endPriceFieldId)).setValue("100,00");
+    }
+
     private void selectFewApplications() throws Exception{
         Thread.currentThread().sleep(2000);
-        setDateFieldForSearch();
+        //setPriceFields();
+        //setDateFieldForSearch();
+        //$(By.id(tradeNameTextFieldId)).setValue("производительности");
+        //$(considerationFilterButton).click();
+        //waitForLoadingImage();
+        setTradeNumberTextFieldForSearch();
         $(searchButton).click();
-        Thread.currentThread().sleep(3000);
+        waitForLoadingImage();
         ElementsCollection applications = $$(applicationCheckBox);
         int i = 0;
         for(SelenideElement currentApplication : applications){
@@ -182,7 +200,8 @@ public class CustomerMyTradesPage extends CustomerMainPage {
         System.out.println(timer.getCurrentTimeMillis());
     }
 
-    public void downloadApplications() throws Exception{
+    public void downloadApplications(String tradeNumber) throws Exception{
+        this.tradeNumber = tradeNumber;
         selectFewApplications();
         downloadSelectedApplications();
     }

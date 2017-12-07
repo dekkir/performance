@@ -1,7 +1,13 @@
 package SupplierPages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import helpers.WebDriverContainer;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
@@ -16,6 +22,7 @@ public class SupplierApplicationPage extends SupplierMyApplicationsPage{
     private static final String successButton = "div#dialogSuccess~div div button";
     private static final String applicationStatusTextSpanXPath = "//div[contains(@id,'workContainer')]//tr/td[contains(text(), 'Статус')]/following-sibling::td";
     private static final String signAndSubmitButton = "button[ng-click='applyClick()']";
+
     private static double resultTime;
 
     public void isPageLoaded(){
@@ -26,9 +33,22 @@ public class SupplierApplicationPage extends SupplierMyApplicationsPage{
         $(tenderCardOpeningButton).click();
     }
 
-    private void withdrawApplication(){
+    public void test() throws ElementNotVisibleException{
+        $(applicationWithdrawButton).waitUntil(Condition.visible, 5000, 1000);
+    }
+
+    private void withdrawApplication() throws Exception{
+        for(int i = 0; i <= 30; i++){
+            String status = "";
+            status = $(applicationWithdrawButton).getAttribute("class");
+            if(status.equals("btn btn-grey")) break;
+            else {
+                Thread.currentThread().sleep(3000);
+                WebDriverContainer.getInstance().getWebDriver().navigate().refresh();
+            }
+        }
         System.out.println("Поставщик отзывает заявку");
-        $(applicationWithdrawButton).shouldBe(Condition.visible).click();
+        $(applicationWithdrawButton).click();
         $(confirmationButton).shouldBe(Condition.visible).click();
         System.out.println(timer.getCurrentTimeMillis());
         $(successButton).shouldBe(Condition.visible).click();

@@ -10,11 +10,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import helpers.AbstractTest;
 import helpers.WebDriverContainer;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.junit.After;
-import org.junit.Test;
 import pages.CommonLogInPage;
 import pages.MainPage;
 
@@ -22,26 +18,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import AdminPages.AdminAuctionManagementPage;
-import AdminPages.AdminContractConclusionAdministrationPage;
-import AdminPages.AdminMainPage;
-import AdminPages.AdminProcedureAccelerationPage;
+
 import CustomerPages.CustomerLogInPage;
 import CustomerPages.CustomerMainPage;
 import CustomerPages.CustomerMasterPage;
-import SupplierPages.*;
-import com.codeborne.selenide.Configuration;
-import helpers.*;
-import pages.*;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.apache.poi.ss.usermodel.*;
-import java.io.*;
-import static com.codeborne.selenide.Selenide.*;
-import java.util.*;
-import CustomerPages.*;
 
 public class StepsDefinitions extends CommonStepDefinition{
 
@@ -99,7 +79,7 @@ public class StepsDefinitions extends CommonStepDefinition{
 
     @Given("^Создается файл для метрик$")
     public void fileForReportCreate() throws IOException{
-        fileName = "supplierAndCustomerPerformanceTest1.txt";
+        fileName = "supplierAndCustomerPerformanceTest.txt";
         File file = new File(logsPath + fileName);
         printStream = new PrintStream(file);
         System.setOut(printStream);
@@ -125,12 +105,13 @@ public class StepsDefinitions extends CommonStepDefinition{
         System.out.println(timer.getCurrentTimeMillis());
         customerMainPage.mainMenuItemTradesOpen();
         customerMyTradesPage.isPageLoaded();
+        waitForLoadingImage();
         System.out.println(timer.getCurrentTimeMillis());
-        customerMyTradesPage.downloadApplications();
         System.out.println("Заказчик открывает реестр контрактов");
         customerMyTradesPage.mainMenuItemContractsOpen();
         System.out.println(timer.getCurrentTimeMillis());
         customerMyContractsPage.isPageLoaded();
+        waitForLoadingImage();
         System.out.println(timer.getCurrentTimeMillis());
     }
 
@@ -140,24 +121,16 @@ public class StepsDefinitions extends CommonStepDefinition{
         customerMainPage.mainMenuItemCustomerMasterOpen();
         for(int eaNumber = 0; eaNumber <= 2; eaNumber++ ){
             customerMasterPage.newAuctionCreating();
-            currentTradeName = customerAuctionCreatingPage.createNewEA(eaNumber + 327);
-            System.out.println(currentTradeName);
+            currentTradeName = customerAuctionCreatingPage.createNewEA(eaNumber);
             if(eaNumber == 0) this.tradeName = currentTradeName;
             else secondaryTradesNames[eaNumber-1] = currentTradeName;
-        }
-        customerMasterPage.mainMenuItemTradesOpen();
-
-        customerMainPage.mainMenuItemCustomerMasterOpen();
-        for(int i = 0; i <= 1000; i++){
-            customerMasterPage.newAuctionCreating();
-            customerAuctionCreatingPage.createNewEA(330 + i );
         }
         customerMasterPage.mainMenuItemTradesOpen();
     }
 
     @And("^Заказчик получает информацию о созданных аукционах$")
     public void customerGetsInfoAboutAuctions() throws Exception{
-        Thread.currentThread().sleep(240000);
+        Thread.currentThread().sleep(300000);
         ArrayList<String> info = customerGetsAuctionInfo(tradeName, true);
         this.tradeNumber = info.get(1);
         this.auctionNumber = info.get(0);
@@ -173,6 +146,31 @@ public class StepsDefinitions extends CommonStepDefinition{
     public void customerExitSystem() throws Exception{
         exitSystem("customer");
         mainPage.isPageLoaded();
+    }
+
+    @When("^Поставщик безденежный входит в систему$")
+    public void supplierWithoutMoneyEntersSystem() throws Exception {
+        mainPage.openLoginPage();
+        commonLogInPage.supplierLogInPageOpen();
+        supplierLogInPage.logInWithCertificate("Автотест Без Денег", false);
+        supplierMainPage.isLoggedIn();
+        waitForLoadingImage();
+    }
+
+    @And("^Поставщик делает поиск закупок$")
+    public void supplierWithoutMoneySearchForTrades(){
+        supplierMainPage.mainMenuTradeSearchOpen();
+        //9999000041217011564
+        //9999000051217012602
+    }
+
+    @Then("^Поставщик подает отложенные заявки$")
+    public void supplierCreatesDelayedApplications() throws Exception{
+        for(int i = 11564; i <= 12602; i++){
+            String number = "99990000412170" + i;
+            supplierMainPage.mainMenuTradeSearchOpen();
+            supplierTradeSearchPage.searchAndOpenByTradeNumber(number);
+        }
     }
 
     @When("^Поставщик \"([^\"]*)\" входит в систему со снятием метрик$")
@@ -208,14 +206,15 @@ public class StepsDefinitions extends CommonStepDefinition{
     @Then("^Поставщик подает заявку на участие в торгах со снятием метрик$")
     public void supplierCreatesApplicationWithReport() throws Exception{
         supplierMainPage.mainMenuTradeSearchOpen();
-        supplierTradeSearchPage.searchAndOpenByTradeName(secondaryTradesInfo[0][1]);
+        supplierTradeSearchPage.searchAndOpenByTradeNumber(secondaryTradesInfo[0][1]);
         //Подача заявки на аукцион
         supplierTenderCard.isPageLoaded();
         supplierTenderCard.applicationAdd();
         supplierApplicationAddingPage.createApplication(true);
-            //System.out.println(timer.getCurrentTimeMillis());
-        supplierActualPropositionsPage.mainMenuTradeSearchOpen();
-        supplierTradeSearchPage.searchAndOpenByTradeName(secondaryTradesInfo[0][1]);
+        //System.out.println(timer.getCurrentTimeMillis());
+        supplierActualPropositionsPage.tradeSearchOpen();
+        supplierTradeSearchPage.searchAndOpenByTradeNumber(secondaryTradesInfo[0][1]);
+        //Thread.currentThread().sleep(40000);
         supplierTenderCard.applicationOpen();
         supplierApplicationPage.withdrawAndRecreateApplication();
     }
@@ -223,7 +222,7 @@ public class StepsDefinitions extends CommonStepDefinition{
     @Then("^Поставщик подает заявку на участие в торгах$")
     public void supplierCreatesApplication() throws Exception{
         supplierMainPage.mainMenuTradeSearchOpen();
-        supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
+        supplierTradeSearchPage.searchAndOpenByTradeNumber(tradeNumber);
         //Подача заявки на второстепенный аукцион
         supplierTenderCard.isPageLoaded();
         supplierTenderCard.applicationAdd();
@@ -235,7 +234,7 @@ public class StepsDefinitions extends CommonStepDefinition{
     public void supplierCreatesDocumentExplainingRequest() throws Exception{
         supplierMainPage.mainMenuTradeSearchOpen();
         //Отправка запроса на разъяснение документации
-        supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
+        supplierTradeSearchPage.searchAndOpenByTradeNumber(tradeNumber);
         supplierTenderCard.addDocumentsExplainingRequest();
         supplierDocumentsExplainingRequest.createRequest();
         supplierTenderCard.goToSupplierMainPage();
@@ -301,30 +300,25 @@ public class StepsDefinitions extends CommonStepDefinition{
     @And("^Администратор открывает страницу ускорения процедур$")
     public void adminOpensAccelerationPage() throws Exception{
         adminMainPage.mainMenuProcedureAccelerationOpen();
-        //waitForLoadingImage();
     }
 
     @Then("^Администратор ускоряет закупки до этапа рассмотрения заявок$")
     public void adminAcceleratesTradeToApplicationsReception() throws Exception{
-        //adminAccelerateProcedure(auctionNumber, "applicationReceptionEnds");
         adminProcedureAccelerationPage.procedureAccelerate(auctionNumber, "applicationReceptionEnds");
         for(int i = 0; i <= 1; i++){
-            //adminAccelerateProcedure(secondaryTradesInfo[i][0], "applicationReceptionEnds");
             adminProcedureAccelerationPage.procedureAccelerate(secondaryTradesInfo[i][0], "applicationReceptionEnds");
         }
-        Thread.currentThread().sleep(300000);
+        Thread.currentThread().sleep(330000);
     }
 
     @Then("^Администратор ускоряет закупку до этапа начала торгов$")
     public void adminAcceleratesTradeToConsiderationEnds() throws Exception{
-        //adminAccelerateProcedure(auctionNumber, "considerationEnds");
         adminProcedureAccelerationPage.procedureAccelerate(auctionNumber, "considerationEnds");
         Thread.currentThread().sleep(330000);
     }
 
     @Then("^Администратор ускоряет закупку до этапа подведения итогов торгов$")
     public void adminAcceleratesTradeToAuctionEnd() throws Exception{
-        //adminAccelerateProcedure(auctionNumber, "auctionEnds");
         adminProcedureAccelerationPage.procedureAccelerate(auctionNumber, "auctionEnds");
         adminAuctionManagementPage.endAuction(auctionNumber);
         Thread.currentThread().sleep(300000);
@@ -333,7 +327,6 @@ public class StepsDefinitions extends CommonStepDefinition{
     @And("^Администратор открывает страницу сроков подписания контракта$")
     public void adminOpensContractAccelerationPage() throws Exception{
         adminMainPage.mainMenuContractConclusionAdministrationOpen();
-        //waitForLoadingImage();
     }
 
     @Then("^Администратор сдвигает регламентный срок подписания контракта$")
@@ -398,7 +391,7 @@ public class StepsDefinitions extends CommonStepDefinition{
     public void supplierOpensBidSubmitPage() throws Exception{
         //Поиск в разделе "Поиск закупок"
         supplierMainPage.mainMenuTradeSearchOpen();
-        supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
+        supplierTradeSearchPage.searchAndOpenByTradeNumber(tradeNumber);
         //Подача заявки на аукцион
         supplierTenderCard.isPageLoaded();
         supplierTenderCard.auctionInfoOpen();
@@ -424,7 +417,7 @@ public class StepsDefinitions extends CommonStepDefinition{
         customerSummarizingProtocolPage.isPageLoaded();
         waitForLoadingImage();
         System.out.println(timer.getCurrentTimeMillis());
-        customerConsiderationProtocolPage.mainMenuItemTradesOpen();
+        customerSummarizingProtocolPage.mainMenuItemTradesOpen();
         customerMyTradesPage.searchAndOpenTradeByTradeNumber(tradeNumber);
         customerTenderCard.viewTenderHistory();
         customerTenderCard.openSummarizingProtocolForm();
@@ -443,7 +436,6 @@ public class StepsDefinitions extends CommonStepDefinition{
     @And("^Заказчик отправляет контракт на подпись поставщику$")
     public void customersSendsContract() throws Exception{
         customerMyTradesPage.contractSendTriangleOpen(tradeNumber);
-        //customerTenderCard.openContractForm();
         customerContractPage.isPageLoaded();
         waitForLoadingImage();
         System.out.println(timer.getCurrentTimeMillis());
@@ -472,6 +464,7 @@ public class StepsDefinitions extends CommonStepDefinition{
     @And("^Заказчик открывает контракт через треугольник 'Переотправьте контракт'$")
     public void customerOpensContractPageViaTrgResend() throws Exception{
         customerMainPage.mainMenuItemTradesOpen();
+        customerMyTradesPage.downloadApplications(tradeNumber);
         customerMyTradesPage.contractResendTriangleOpen(tradeNumber);
         customerContractPage.isPageLoaded();
         waitForLoadingImage();
@@ -520,256 +513,15 @@ public class StepsDefinitions extends CommonStepDefinition{
         System.out.println("Test ends " + timer.getDateForReport());
         printStream.close();
     }
-/*
-    public void performanceTest() throws Exception, Throwable {
 
-        //fileName = "supplierAndCustomerPerformanceTest" + timer.getDate() + ".txt";
-        fileName = "supplierAndCustomerPerformanceTest.txt";
-        File file = new File(logsPath + fileName);
-        PrintStream printStream = new PrintStream(file);
-        System.setOut(printStream);
-        System.out.println("Test starts " + timer.getDateForReport());
-
-        suppliersCreateApplications(tradeNumber,2);
-        suppliersCreateApplications(secondaryTradesInfo[0][1], 1);
-        supplierCreatesDocumentExplainingRequest();
-        supplierGetsInfo2();
-        adminAccelerateProcedure(auctionNumber, "applicationReceptionEnds");
-        for(int i = 0; i <= 1; i++){
-            adminAccelerateProcedure(secondaryTradesInfo[i][0], "applicationReceptionEnds");
-        }
-        Thread.currentThread().sleep(300000);
-        customerCreateConsiderationProtocol(tradeNumber, true, 2);
-        customerCreateConsiderationProtocol(secondaryTradesInfo[0][1], false, 1);
-        customerCreateConsiderationProtocol(secondaryTradesInfo[1][1], false, 0);
-        //Ускорение до этапа начала торгов
-        adminAccelerateProcedure(auctionNumber,"considerationEnds");
-        Thread.currentThread().sleep(300000);
-        suppliersSubmitBids();
-        //Насильственное завершение аукциона
-        adminAccelerateProcedure(auctionNumber,"auctionEnds");
-        Thread.currentThread().sleep(300000);
-        //Оформление протокола подведения итогов
-        customerCreatesSummarizingProtocol();
-        Thread.currentThread().sleep(60000);
-        //Направление протокола разногласий
-        supplierCreatesDifferenceProtocol();
-        //Изменение контракта
-        Thread.currentThread().sleep(60000);
-        customerChangesContract();
-        Thread.currentThread().sleep(60000);
-        //Подписание контракта поставщиком
-        supplierSignsContract();
-        adminAccelerateContractConclusion();
-        Thread.currentThread().sleep(180000);
-        customerSignsContract();
-
-        System.out.println("Test ends " + timer.getDateForReport());
-        printStream.close();
-    }
-*/
     private ArrayList<String> customerGetsAuctionInfo(String tradeName, boolean timeReport) throws Exception{
         customerMyTradesPage.searchAndOpenTradeByTradeName(tradeName, timeReport);
         customerTenderCard.isPageLoaded();
+        waitForLoadingImage();
         if(timeReport)
             System.out.println(timer.getCurrentTimeMillis());
         ArrayList<String> tradeInfo = customerTenderCard.getTradeInfo();
         customerTenderCard.mainMenuItemTradesOpen();
         return tradeInfo;
     }
-/*
-    private void suppliersCreateApplications(String tradeNumber, int numberOfParticipants) throws Exception{
-        for(int i = 1; i <= numberOfParticipants; i++){
-            mainPage.openLoginPage();
-            commonLogInPage.supplierLogInPageOpen();
-            supplierLogInPage.logInWithCertificate("Участник для отладки " + i, false);
-            supplierMainPage.isLoggedIn();
-            //Поиск в разделе "Поиск закупок"
-            supplierMainPage.mainMenuTradeSearchOpen();
-            supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
-            //Подача заявки на аукцион
-            supplierTenderCard.isPageLoaded();
-            supplierTenderCard.applicationAdd();
-            if(i == 2) {
-                supplierApplicationAddingPage.createApplication(true);
-                //System.out.println(timer.getCurrentTimeMillis());
-                supplierApplicationAddingPage.mainMenuTradeSearchOpen();
-                supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
-                supplierTenderCard.applicationOpen();
-                supplierApplicationPage.withdrawAndRecreateApplication();
-                supplierMainPage.logOut();
-                mainPage.isPageLoaded();
-            }
-            else {
-                supplierApplicationAddingPage.createApplication(false);
-                supplierApplicationAddingPage.logOut();
-                mainPage.isPageLoaded();
-            }
-        }
-    }
-/*
-    private void supplierGetsInfo2() throws Exception{
-        mainPage.openLoginPage();
-        commonLogInPage.supplierLogInPageOpen();
-        supplierLogInPage.logInWithCertificate("Участник для отладки 2", false);
-        supplierMainPage.isLoggedIn();
-
-        mainPage.isPageLoaded();
-    }
-
-/*
-
-    private void adminAccelerateProcedure(String auctionNumber, String accelerationType) throws Exception{
-        //Ускорение до этапа рассмотрения заявок
-        adminProcedureAccelerationPage.procedureAccelerate(auctionNumber, accelerationType); //
-        if(accelerationType.equals("auctionEnds")){
-            adminAuctionManagementPage.endAuction(auctionNumber);
-        }
-    }
-/*
-    private void customerCreateConsiderationProtocol(String tradeNumber, boolean timeReport, int numberOfParticipants) throws Exception{
-        //Заказчик рассматривает заявки
-        mainPage.openLoginPage();
-        commonLogInPage.customerLogInPageOpen();
-        customerLogInPage.logInWithCertificate(false);
-        customerMainPage.isLoggedIn();
-        customerMainPage.mainMenuItemTradesOpen();
-        customerMyTradesPage.considerApplicationsTriangleOpen(tradeNumber, timeReport);
-        customerConsiderationProtocolPage.isPageLoaded();
-        if(timeReport) {
-            System.out.println(timer.getCurrentTimeMillis());
-            customerConsiderationProtocolPage.mainMenuItemTradesOpen();
-            customerMyTradesPage.searchAndOpenTradeByTradeNumber(tradeNumber);
-            customerTenderCard.openConsiderationProtocolForm();
-            customerConsiderationProtocolPage.isPageLoaded();
-            System.out.println(timer.getCurrentTimeMillis());
-        }
-        customerConsiderationProtocolPage.createAndPublishConsiderationProtocol(numberOfParticipants);
-        customerConsiderationProtocolPage.logOut();
-        mainPage.isPageLoaded();
-    }
-/*
-    private void suppliersSubmitBids() throws Exception{
-        for(int i = 1; i <= 2; i++) {
-            mainPage.openLoginPage();
-            commonLogInPage.supplierLogInPageOpen();
-            supplierLogInPage.logInWithCertificate("Участник для отладки " + i, false);
-            supplierMainPage.isLoggedIn();
-            //Поиск в разделе "Поиск закупок"
-            supplierMainPage.mainMenuTradeSearchOpen();
-            supplierTradeSearchPage.searchAndOpenByTradeName(tradeNumber);
-            //Подача заявки на аукцион
-            supplierTenderCard.isPageLoaded();
-            supplierTenderCard.auctionInfoOpen();
-            supplierAuctionInfoPage.auctionOpen();
-            if(i == 1)
-                supplierAuctionPage.createAndSubmitNewBid(true);
-            else
-                supplierAuctionPage.createAndSubmitNewBid(false);
-            supplierAuctionPage.logOut();
-            mainPage.isPageLoaded();
-        }
-    }
-/*
-    private void customerCreatesSummarizingProtocol() throws Exception{
-        mainPage.openLoginPage();
-        commonLogInPage.customerLogInPageOpen();
-        customerLogInPage.logInWithCertificate(false);
-        customerMainPage.isLoggedIn();
-        customerMainPage.mainMenuItemTradesOpen();
-        customerMyTradesPage.summarizeTriangleOpen(tradeNumber);
-        customerSummarizingProtocolPage.isPageLoaded();
-        System.out.println(timer.getCurrentTimeMillis());
-        customerConsiderationProtocolPage.mainMenuItemTradesOpen();
-        customerMyTradesPage.searchAndOpenTradeByTradeNumber(tradeNumber);
-        customerTenderCard.viewTenderHistory();
-        customerTenderCard.openSummarizingProtocolForm();
-        customerSummarizingProtocolPage.isPageLoaded();
-        System.out.println(timer.getCurrentTimeMillis());
-        customerSummarizingProtocolPage.createAndPublishSummarizingProtocol();
-        customerTenderCard.mainMenuItemTradesOpen();
-        Thread.currentThread().sleep(30000);
-        customerMyTradesPage.contractSendTriangleOpen(tradeNumber);
-        //customerTenderCard.openContractForm();
-        customerContractPage.isPageLoaded();
-        System.out.println(timer.getCurrentTimeMillis());
-        customerContractPage.createAndSendContract();
-        customerContractPage.logOut();
-        mainPage.isPageLoaded();
-    }
-/*
-    private void supplierCreatesDifferenceProtocol() throws Exception{
-        mainPage.openLoginPage();
-        commonLogInPage.supplierLogInPageOpen();
-        supplierLogInPage.logInWithCertificate("Участник для отладки 2", false);
-        supplierMainPage.isLoggedIn();
-        supplierMainPage.mainMenuItemContractsOpen();
-        System.out.println("Поставщик открывает контракт через треугольник 'Подпишите контракт'");
-
-        supplierMyContractsPage.searchAndOpenContractByTradeNumberByTriangle(tradeNumber, true);
-        supplierContractPage.isPageLoaded();
-        System.out.println(timer.getCurrentTimeMillis());
-        System.out.println("Поставщик создает протокол разногласий");
-        supplierContractPage.createDifferenceProtocol();
-        supplierContractPage.logOut();
-        mainPage.isPageLoaded();
-    }
-/*
-    private void customerChangesContract() throws Exception{
-        mainPage.openLoginPage();
-        commonLogInPage.customerLogInPageOpen();
-        customerLogInPage.logInWithCertificate(false);
-        customerMainPage.isLoggedIn();
-        customerMainPage.mainMenuItemTradesOpen();
-        customerMyTradesPage.contractResendTriangleOpen(tradeNumber);
-        customerContractPage.isPageLoaded();
-        System.out.println(timer.getCurrentTimeMillis());
-        String currentURL = WebDriverContainer.getInstance().getWebDriver().getCurrentUrl();
-        this.contractId = currentURL.substring(currentURL.lastIndexOf('/' ) + 1);
-        customerContractPage.makeChange();
-        customerContractPage.downloadDocs();
-        customerContractPage.logOut();
-        mainPage.isPageLoaded();
-    }
-/*
-    private void supplierSignsContract() throws Exception{
-        mainPage.openLoginPage();
-        commonLogInPage.supplierLogInPageOpen();
-        supplierLogInPage.logInWithCertificate("Участник для отладки 2", false);
-        supplierMainPage.isLoggedIn();
-        supplierMainPage.mainMenuItemContractsOpen();
-        supplierMyContractsPage.searchAndOpenContractByTradeNumberByTriangle(tradeNumber, false);
-        System.out.println("Поставщик подписывает контракт");
-        supplierContractPage.acceptAndSignContract();
-        supplierContractPage.downloadDocs();
-        supplierContractPage.logOut();
-        mainPage.isPageLoaded();
-    }
-
-    private void adminAccelerateContractConclusion() throws Exception{
-        mainPage.openLoginPage();
-        commonLogInPage.supplierLogInPageOpen();
-        supplierLogInPage.logInWithCertificate("Админ для отладки 0", false);
-        adminMainPage.isPageLoaded();
-        adminMainPage.mainMenuContractConclusionAdministrationOpen();
-        adminContractConclusionAdministrationPage.accelerateContractConclusion(contractId);
-        adminMainPage.logOut();
-        mainPage.isPageLoaded();
-    }
-
-    private void customerSignsContract() throws Exception{
-        mainPage.openLoginPage();
-        commonLogInPage.customerLogInPageOpen();
-        customerLogInPage.logInWithCertificate(false);
-        customerMainPage.isLoggedIn();
-        customerMainPage.mainMenuItemTradesOpen();
-        customerMyTradesPage.contractSignTriangleOpen(tradeNumber);
-        customerContractPage.isPageLoaded();
-        System.out.println(timer.getCurrentTimeMillis());
-        customerContractPage.signContract();
-        customerContractPage.logOut();
-        mainPage.isPageLoaded();
-    }
-
-*/
 }

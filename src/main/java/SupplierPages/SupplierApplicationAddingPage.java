@@ -75,4 +75,15 @@ public class SupplierApplicationAddingPage extends SupplierTenderCard{
         applicationSignAndSubmit();
     }
 
+    public void createDelayedApplication() throws Exception{
+        this.timeReport = timeReport;
+        isPageLoaded();
+        innFill();
+        //documentAdd();
+        $(By.id(applicationSignAndSubmitButtonId)).shouldBe(Condition.enabled).click();
+        $(acceptButton).shouldBe(Condition.visible).click();
+        Thread.currentThread().sleep(500);
+        $(By.xpath(successButtonXPath)).shouldBe(Condition.visible).click();
+    }
+
 }

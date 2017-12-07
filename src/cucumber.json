@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 3797661991,
+              "duration": 3718379285,
               "status": "passed"
             },
             "match": {
@@ -21,7 +21,7 @@
         "after": [
           {
             "result": {
-              "duration": 3403074473,
+              "duration": 4217953700,
               "status": "passed"
             },
             "match": {
@@ -34,7 +34,7 @@
         "steps": [
           {
             "result": {
-              "duration": 102374029,
+              "duration": 102668367,
               "status": "passed"
             },
             "line": 4,
@@ -46,10 +46,10 @@
           },
           {
             "result": {
-              "duration": 40552277333,
+              "duration": 22643590802,
               "status": "passed"
             },
-            "line": 5,
+            "line": 6,
             "name": "Заказчик входит в систему со снятием метрик",
             "match": {
               "location": "StepsDefinitions.customerEntersSystemWithReport()"
@@ -58,17 +58,22 @@
           },
           {
             "result": {
-              "duration": 35814502810281,
-              "error_message": "Element not found {By.id: header__authorization_loguot}\nExpected: visible\nScreenshot: file:/C:/Users/User3/IdeaProjects/Pr44/build/reports/tests/1512456924126.0.png\nTimeout: 90 s.\nCaused by: NoSuchElementException: no such element: Unable to locate element: {\"method\":\"id\",\"selector\":\"header__authorization_loguot\"}\r\n\tat com.codeborne.selenide.impl.WebElementSource.createElementNotFoundError(WebElementSource.java:31)\r\n\tat com.codeborne.selenide.impl.ElementFinder.createElementNotFoundError(ElementFinder.java:82)\r\n\tat com.codeborne.selenide.impl.WebElementSource.checkCondition(WebElementSource.java:59)\r\n\tat com.codeborne.selenide.commands.Should.should(Should.java:35)\r\n\tat com.codeborne.selenide.commands.Should.execute(Should.java:29)\r\n\tat com.codeborne.selenide.commands.Should.execute(Should.java:12)\r\n\tat com.codeborne.selenide.commands.Commands.execute(Commands.java:143)\r\n\tat com.codeborne.selenide.impl.SelenideElementProxy.dispatchAndRetry(SelenideElementProxy.java:87)\r\n\tat com.codeborne.selenide.impl.SelenideElementProxy.invoke(SelenideElementProxy.java:63)\r\n\tat com.sun.proxy.$Proxy16.should(Unknown Source)\r\n\tat CustomerPages.CustomerAuctionCreatingPage.nextStepPassing(CustomerAuctionCreatingPage.java:93)\r\n\tat CustomerPages.CustomerAuctionCreatingPage.createNewEA(CustomerAuctionCreatingPage.java:211)\r\n\tat steps.StepsDefinitions.customerCreatesAuction(StepsDefinitions.java:153)\r\n\tat ✽.And Заказчик создает три аукциона(performance.feature:7)\r\nCaused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"id\",\"selector\":\"header__authorization_loguot\"}\n  (Session info: chrome\u003d62.0.3202.75)\n  (Driver info: chromedriver\u003d2.32.498550 (9dec58e66c31bcc53a9ce3c7226f0c1c5810906a),platform\u003dWindows NT 6.3.9600 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 5.02 seconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00273.4.0\u0027, revision: \u0027unknown\u0027, time: \u0027unknown\u0027\nSystem info: host: \u0027USER\u0027, ip: \u0027172.19.14.199\u0027, os.name: \u0027Windows 8.1\u0027, os.arch: \u0027amd64\u0027, os.version: \u00276.3\u0027, java.version: \u00271.8.0_144\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities [{applicationCacheEnabled\u003dfalse, rotatable\u003dfalse, mobileEmulationEnabled\u003dfalse, networkConnectionEnabled\u003dfalse, chrome\u003d{chromedriverVersion\u003d2.32.498550 (9dec58e66c31bcc53a9ce3c7226f0c1c5810906a), userDataDir\u003dC:\\Users\\User3\\AppData\\Local\\Temp\\scoped_dir13268_24152}, takesHeapSnapshot\u003dtrue, pageLoadStrategy\u003dnormal, databaseEnabled\u003dfalse, handlesAlerts\u003dtrue, hasTouchScreen\u003dfalse, version\u003d62.0.3202.75, platform\u003dWIN8_1, browserConnectionEnabled\u003dfalse, nativeEvents\u003dtrue, acceptSslCerts\u003dtrue, locationContextEnabled\u003dtrue, webStorageEnabled\u003dtrue, browserName\u003dchrome, takesScreenshot\u003dtrue, javascriptEnabled\u003dtrue, cssSelectorsEnabled\u003dtrue, setWindowRect\u003dtrue, unexpectedAlertBehaviour\u003d}]\nSession ID: 784cc21dcb9d731c920a608605a33d7f\n*** Element info: {Using\u003did, value\u003dheader__authorization_loguot}\r\n\tat sun.reflect.GeneratedConstructorAccessor13.newInstance(Unknown Source)\r\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\r\n\tat org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)\r\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:410)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:453)\r\n\tat org.openqa.selenium.By$ById.findElement(By.java:218)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:402)\r\n\tat com.codeborne.selenide.impl.WebElementSelector.findElement(WebElementSelector.java:28)\r\n\tat com.codeborne.selenide.impl.ElementFinder.getWebElement(ElementFinder.java:56)\r\n\tat com.codeborne.selenide.impl.WebElementSource.checkCondition(WebElementSource.java:44)\r\n\tat com.codeborne.selenide.commands.Should.should(Should.java:35)\r\n\tat com.codeborne.selenide.commands.Should.execute(Should.java:29)\r\n\tat com.codeborne.selenide.commands.Should.execute(Should.java:12)\r\n\tat com.codeborne.selenide.commands.Commands.execute(Commands.java:143)\r\n\tat com.codeborne.selenide.impl.SelenideElementProxy.dispatchAndRetry(SelenideElementProxy.java:87)\r\n\tat com.codeborne.selenide.impl.SelenideElementProxy.invoke(SelenideElementProxy.java:63)\r\n\tat com.sun.proxy.$Proxy16.should(Unknown Source)\r\n\tat CustomerPages.CustomerAuctionCreatingPage.nextStepPassing(CustomerAuctionCreatingPage.java:93)\r\n\tat CustomerPages.CustomerAuctionCreatingPage.createNewEA(CustomerAuctionCreatingPage.java:211)\r\n\tat steps.StepsDefinitions.customerCreatesAuction(StepsDefinitions.java:153)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n\tat java.lang.reflect.Method.invoke(Method.java:498)\r\n\tat cucumber.runtime.Utils$1.call(Utils.java:37)\r\n\tat cucumber.runtime.Timeout.timeout(Timeout.java:13)\r\n\tat cucumber.runtime.Utils.invoke(Utils.java:31)\r\n\tat cucumber.runtime.java.JavaStepDefinition.execute(JavaStepDefinition.java:38)\r\n\tat cucumber.runtime.StepDefinitionMatch.runStep(StepDefinitionMatch.java:37)\r\n\tat cucumber.runtime.Runtime.runStep(Runtime.java:299)\r\n\tat cucumber.runtime.model.StepContainer.runStep(StepContainer.java:44)\r\n\tat cucumber.runtime.model.StepContainer.runSteps(StepContainer.java:39)\r\n\tat cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:44)\r\n\tat cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:91)\r\n\tat cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)\r\n\tat cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)\r\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\r\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\r\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\r\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\r\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\r\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\r\n\tat cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)\r\n\tat cucumber.api.junit.Cucumber.runChild(Cucumber.java:93)\r\n\tat cucumber.api.junit.Cucumber.runChild(Cucumber.java:37)\r\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\r\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\r\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\r\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\r\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\r\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\r\n\tat cucumber.api.junit.Cucumber.run(Cucumber.java:98)\r\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:137)\r\n\tat com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)\r\n\tat com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)\r\n\tat com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)\r\n\tat com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)\r\n",
-              "status": "failed"
+              "duration": 16634777044,
+              "status": "passed"
             },
-            "comments": [
-              {
-                "line": 6,
-                "value": "#And Заказчик снимает метрики"
-              }
-            ],
             "line": 7,
+            "name": "Заказчик снимает метрики",
+            "match": {
+              "location": "StepsDefinitions.customerCollectMetrics()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 144943089778,
+              "status": "passed"
+            },
+            "line": 8,
             "name": "Заказчик создает три аукциона",
             "match": {
               "location": "StepsDefinitions.customerCreatesAuction()"
@@ -77,9 +82,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 373331350570,
+              "status": "passed"
             },
-            "line": 8,
+            "line": 9,
             "name": "Заказчик получает информацию о созданных аукционах",
             "match": {
               "location": "StepsDefinitions.customerGetsInfoAboutAuctions()"
@@ -88,9 +94,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 11336503962,
+              "status": "passed"
             },
-            "line": 9,
+            "line": 10,
             "name": "Заказчик выходит из системы",
             "match": {
               "location": "StepsDefinitions.customerExitSystem()"
@@ -99,9 +106,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 17607726995,
+              "status": "passed"
             },
-            "line": 11,
+            "line": 12,
             "name": "Поставщик \"1\" входит в систему со снятием метрик",
             "match": {
               "arguments": [
@@ -116,9 +124,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 6452657160,
+              "status": "passed"
             },
-            "line": 12,
+            "line": 13,
             "name": "Поставщик снимает метрики о заявках",
             "match": {
               "location": "StepsDefinitions.supplierCollectsMetricsAboutApplications()"
@@ -127,9 +136,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 154545604947,
+              "status": "passed"
             },
-            "line": 13,
+            "line": 14,
             "name": "Поставщик подает заявку на участие в торгах со снятием метрик",
             "match": {
               "location": "StepsDefinitions.supplierCreatesApplicationWithReport()"
@@ -138,9 +148,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 23395565759,
+              "status": "passed"
             },
-            "line": 14,
+            "line": 15,
             "name": "Поставщик подает заявку на участие в торгах",
             "match": {
               "location": "StepsDefinitions.supplierCreatesApplication()"
@@ -149,9 +160,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 14023828715,
+              "status": "passed"
             },
-            "line": 15,
+            "line": 16,
             "name": "Поставщик подает запрос на разъяснение документации",
             "match": {
               "location": "StepsDefinitions.supplierCreatesDocumentExplainingRequest()"
@@ -160,9 +172,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 28681693681,
+              "status": "passed"
             },
-            "line": 16,
+            "line": 17,
             "name": "Поставщик снимает метрики о торгах и контрактах",
             "match": {
               "location": "StepsDefinitions.supplierCollectsMetricsAboutContracts()"
@@ -171,9 +184,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 7724571826,
+              "status": "passed"
             },
-            "line": 17,
+            "line": 18,
             "name": "Поставщик выходит из системы",
             "match": {
               "location": "StepsDefinitions.supplierExitSystem()"
@@ -182,9 +196,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 9665059865,
+              "status": "passed"
             },
-            "line": 19,
+            "line": 20,
             "name": "Поставщик \"2\" входит в систему",
             "match": {
               "arguments": [
@@ -199,9 +214,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 21807206029,
+              "status": "passed"
             },
-            "line": 20,
+            "line": 21,
             "name": "Поставщик подает заявку на участие в торгах",
             "match": {
               "location": "StepsDefinitions.supplierCreatesApplication()"
@@ -210,9 +226,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 7401413874,
+              "status": "passed"
             },
-            "line": 21,
+            "line": 22,
             "name": "Поставщик выходит из системы",
             "match": {
               "location": "StepsDefinitions.supplierExitSystem()"
@@ -221,9 +238,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 6396678183,
+              "status": "passed"
             },
-            "line": 23,
+            "line": 24,
             "name": "Администратор входит в систему",
             "match": {
               "location": "StepsDefinitions.adminEntersSystem()"
@@ -232,9 +250,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 1445778551,
+              "status": "passed"
             },
-            "line": 24,
+            "line": 25,
             "name": "Администратор открывает страницу ускорения процедур",
             "match": {
               "location": "StepsDefinitions.adminOpensAccelerationPage()"
@@ -243,9 +262,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 342989561507,
+              "status": "passed"
             },
-            "line": 25,
+            "line": 26,
             "name": "Администратор ускоряет закупки до этапа рассмотрения заявок",
             "match": {
               "location": "StepsDefinitions.adminAcceleratesTradeToApplicationsReception()"
@@ -254,9 +274,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 8209162821,
+              "status": "passed"
             },
-            "line": 26,
+            "line": 27,
             "name": "Администратор выходит из системы",
             "match": {
               "location": "StepsDefinitions.adminExitSystem()"
@@ -265,9 +286,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 11982802550,
+              "status": "passed"
             },
-            "line": 28,
+            "line": 29,
             "name": "Заказчик входит в систему",
             "match": {
               "location": "StepsDefinitions.customerEntersSystem()"
@@ -276,9 +298,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 36867186706,
+              "status": "passed"
             },
-            "line": 29,
+            "line": 30,
             "name": "Заказчик открывает форму протокола рассмотрения заявок со снятием метрик",
             "match": {
               "location": "StepsDefinitions.customerOpensConsiderationFormWithReport()"
@@ -287,9 +310,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 14869709294,
+              "status": "passed"
             },
-            "line": 30,
+            "line": 31,
             "name": "Заказчик создает протокол рассмотрения двух заявок",
             "match": {
               "location": "StepsDefinitions.customerCreatesProtocolWithTwoApplications()"
@@ -298,15 +322,16 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 29993507555,
+              "status": "passed"
             },
             "comments": [
               {
-                "line": 31,
+                "line": 32,
                 "value": "#  And Заказчик открывает форму протокола рассмотрения заявок по закупке с номером"
               }
             ],
-            "line": 32,
+            "line": 33,
             "name": "Заказчик создает протокол рассмотрения одной заявки",
             "match": {
               "location": "StepsDefinitions.customerCreatesProtocolWithOneApplication()"
@@ -315,15 +340,16 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 26599714628,
+              "status": "passed"
             },
             "comments": [
               {
-                "line": 33,
+                "line": 34,
                 "value": "#  And Заказчик открывает форму протокола рассмотрения заявок по закупке с номером"
               }
             ],
-            "line": 34,
+            "line": 35,
             "name": "Заказчик создает протокол о признании закупки несостоявшейся",
             "match": {
               "location": "StepsDefinitions.customerCreatesProtocolWithoutApplications()"
@@ -332,9 +358,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 11768787169,
+              "status": "passed"
             },
-            "line": 35,
+            "line": 36,
             "name": "Заказчик выходит из системы",
             "match": {
               "location": "StepsDefinitions.customerExitSystem()"
@@ -343,9 +370,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 4973088155,
+              "status": "passed"
             },
-            "line": 37,
+            "line": 38,
             "name": "Администратор входит в систему",
             "match": {
               "location": "StepsDefinitions.adminEntersSystem()"
@@ -354,9 +382,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 1156926763,
+              "status": "passed"
             },
-            "line": 38,
+            "line": 39,
             "name": "Администратор открывает страницу ускорения процедур",
             "match": {
               "location": "StepsDefinitions.adminOpensAccelerationPage()"
@@ -365,9 +394,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 335342109990,
+              "status": "passed"
             },
-            "line": 39,
+            "line": 40,
             "name": "Администратор ускоряет закупку до этапа начала торгов",
             "match": {
               "location": "StepsDefinitions.adminAcceleratesTradeToConsiderationEnds()"
@@ -376,9 +406,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 8003013566,
+              "status": "passed"
             },
-            "line": 40,
+            "line": 41,
             "name": "Администратор выходит из системы",
             "match": {
               "location": "StepsDefinitions.adminExitSystem()"
@@ -387,9 +418,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 10061439072,
+              "status": "passed"
             },
-            "line": 42,
+            "line": 43,
             "name": "Поставщик \"1\" входит в систему",
             "match": {
               "arguments": [
@@ -404,9 +436,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 12145749642,
+              "status": "passed"
             },
-            "line": 43,
+            "line": 44,
             "name": "Поставщик открывает страницу подачи ценовых предложений",
             "match": {
               "location": "StepsDefinitions.supplierOpensBidSubmitPage()"
@@ -415,9 +448,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 4631978048,
+              "status": "passed"
             },
-            "line": 44,
+            "line": 45,
             "name": "Поставщик подает ценовое предложение на аукционе со снятием метрик",
             "match": {
               "location": "StepsDefinitions.supplierSubmitBitWithReport()"
@@ -426,9 +460,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 7324230493,
+              "status": "passed"
             },
-            "line": 45,
+            "line": 46,
             "name": "Поставщик выходит из системы",
             "match": {
               "location": "StepsDefinitions.supplierExitSystem()"
@@ -437,9 +472,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 9613287575,
+              "status": "passed"
             },
-            "line": 47,
+            "line": 48,
             "name": "Поставщик \"2\" входит в систему",
             "match": {
               "arguments": [
@@ -454,9 +490,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 9984858899,
+              "status": "passed"
             },
-            "line": 48,
+            "line": 49,
             "name": "Поставщик открывает страницу подачи ценовых предложений",
             "match": {
               "location": "StepsDefinitions.supplierOpensBidSubmitPage()"
@@ -465,9 +502,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 4677694146,
+              "status": "passed"
             },
-            "line": 49,
+            "line": 50,
             "name": "Поставщик подает ценовое предложение на аукционе",
             "match": {
               "location": "StepsDefinitions.supplierSubmitBid()"
@@ -476,9 +514,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 7906905044,
+              "status": "passed"
             },
-            "line": 50,
+            "line": 51,
             "name": "Поставщик выходит из системы",
             "match": {
               "location": "StepsDefinitions.supplierExitSystem()"
@@ -487,9 +526,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 4050424271,
+              "status": "passed"
             },
-            "line": 52,
+            "line": 53,
             "name": "Администратор входит в систему",
             "match": {
               "location": "StepsDefinitions.adminEntersSystem()"
@@ -498,9 +538,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 1154203826,
+              "status": "passed"
             },
-            "line": 53,
+            "line": 54,
             "name": "Администратор открывает страницу ускорения процедур",
             "match": {
               "location": "StepsDefinitions.adminOpensAccelerationPage()"
@@ -509,9 +550,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 307583046493,
+              "status": "passed"
             },
-            "line": 54,
+            "line": 55,
             "name": "Администратор ускоряет закупку до этапа подведения итогов торгов",
             "match": {
               "location": "StepsDefinitions.adminAcceleratesTradeToAuctionEnd()"
@@ -520,9 +562,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 8047103382,
+              "status": "passed"
             },
-            "line": 55,
+            "line": 56,
             "name": "Администратор выходит из системы",
             "match": {
               "location": "StepsDefinitions.adminExitSystem()"
@@ -531,9 +574,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 10591842010,
+              "status": "passed"
             },
-            "line": 57,
+            "line": 58,
             "name": "Заказчик входит в систему",
             "match": {
               "location": "StepsDefinitions.customerEntersSystem()"
@@ -542,9 +586,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 39333260676,
+              "status": "passed"
             },
-            "line": 58,
+            "line": 59,
             "name": "Заказчик открывает форму протокола подведения итогов торгов",
             "match": {
               "location": "StepsDefinitions.customerOpensSummarizingForm()"
@@ -553,9 +598,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 59984068947,
+              "status": "passed"
             },
-            "line": 59,
+            "line": 60,
             "name": "Заказчик создает протокол подведения итогов торгов",
             "match": {
               "location": "StepsDefinitions.customerCreatesSummarizingProtoc()"
@@ -564,9 +610,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 24952484483,
+              "status": "passed"
             },
-            "line": 60,
+            "line": 61,
             "name": "Заказчик отправляет контракт на подпись поставщику",
             "match": {
               "location": "StepsDefinitions.customersSendsContract()"
@@ -575,9 +622,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 11188226783,
+              "status": "passed"
             },
-            "line": 61,
+            "line": 62,
             "name": "Заказчик выходит из системы",
             "match": {
               "location": "StepsDefinitions.customerExitSystem()"
@@ -586,100 +634,15 @@
           },
           {
             "result": {
-              "status": "undefined"
-            },
-            "line": 63,
-            "name": "Поставщик 1 входит в систему",
-            "match": {},
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "skipped"
+              "duration": 10285271806,
+              "status": "passed"
             },
             "line": 64,
-            "name": "Поставщик открывает контракт через треугольник \u0027Подпишите контракт\u0027 со снятием метрик",
-            "match": {
-              "location": "StepsDefinitions.supplierOpensContractPageViaTrgSignWithReport()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 65,
-            "name": "Поставщик создает протокол разногласий",
-            "match": {
-              "location": "StepsDefinitions.supplierCreatesDifferencesProtocol()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 66,
-            "name": "Поставщик выходит из системы",
-            "match": {
-              "location": "StepsDefinitions.supplierExitSystem()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 68,
-            "name": "Заказчик входит в систему",
-            "match": {
-              "location": "StepsDefinitions.customerEntersSystem()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 69,
-            "name": "Заказчик открывает контракт через треугольник \u0027Переотправьте контракт\u0027",
-            "match": {
-              "location": "StepsDefinitions.customerOpensContractPageViaTrgResend()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 70,
-            "name": "Заказчик вносит изменения в контракт",
-            "match": {
-              "location": "StepsDefinitions.customerMakesChangesToContract()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 71,
-            "name": "Заказчик выходит из системы",
-            "match": {
-              "location": "StepsDefinitions.customerExitSystem()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 73,
-            "name": "Поставщик \"1\" входит в систему",
+            "name": "Поставщик \"2\" входит в систему",
             "match": {
               "arguments": [
                 {
-                  "val": "1",
+                  "val": "2",
                   "offset": 11
                 }
               ],
@@ -689,31 +652,34 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 12815148213,
+              "status": "passed"
             },
-            "line": 74,
-            "name": "Поставщик открывает контракт через треугольник \u0027Подпишите контракт\u0027",
+            "line": 65,
+            "name": "Поставщик открывает контракт через треугольник \u0027Подпишите контракт\u0027 со снятием метрик",
             "match": {
-              "location": "StepsDefinitions.supplierOpensContractPageViaTrgSign()"
+              "location": "StepsDefinitions.supplierOpensContractPageViaTrgSignWithReport()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 72832230956,
+              "status": "passed"
             },
-            "line": 75,
-            "name": "Поставщик подписывает контракт",
+            "line": 66,
+            "name": "Поставщик создает протокол разногласий",
             "match": {
-              "location": "StepsDefinitions.supplierSignsContract()"
+              "location": "StepsDefinitions.supplierCreatesDifferencesProtocol()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 8547361082,
+              "status": "passed"
             },
-            "line": 76,
+            "line": 67,
             "name": "Поставщик выходит из системы",
             "match": {
               "location": "StepsDefinitions.supplierExitSystem()"
@@ -722,53 +688,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 10141318802,
+              "status": "passed"
             },
-            "line": 78,
-            "name": "Администратор входит в систему",
-            "match": {
-              "location": "StepsDefinitions.adminEntersSystem()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 79,
-            "name": "Администратор открывает страницу сроков подписания контракта",
-            "match": {
-              "location": "StepsDefinitions.adminOpensContractAccelerationPage()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 80,
-            "name": "Администратор сдвигает регламентный срок подписания контракта",
-            "match": {
-              "location": "StepsDefinitions.adminAcceleratesContractConclusion()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 81,
-            "name": "Администратор выходит из системы",
-            "match": {
-              "location": "StepsDefinitions.adminExitSystem()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 83,
+            "line": 69,
             "name": "Заказчик входит в систему",
             "match": {
               "location": "StepsDefinitions.customerEntersSystem()"
@@ -777,31 +700,34 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 85944742647,
+              "status": "passed"
             },
-            "line": 84,
-            "name": "Заказчик открывает контракт через треугольник \u0027Подпишите контракт\u0027",
+            "line": 70,
+            "name": "Заказчик открывает контракт через треугольник \u0027Переотправьте контракт\u0027",
             "match": {
-              "location": "StepsDefinitions.customerOpensContractPageViaTrgSing()"
+              "location": "StepsDefinitions.customerOpensContractPageViaTrgResend()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 24983889932,
+              "status": "passed"
             },
-            "line": 85,
-            "name": "Заказчик подписывает контракт",
+            "line": 71,
+            "name": "Заказчик вносит изменения в контракт",
             "match": {
-              "location": "StepsDefinitions.customerSignsContract()"
+              "location": "StepsDefinitions.customerMakesChangesToContract()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 11656484174,
+              "status": "passed"
             },
-            "line": 86,
+            "line": 72,
             "name": "Заказчик выходит из системы",
             "match": {
               "location": "StepsDefinitions.customerExitSystem()"
@@ -810,9 +736,174 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 10431090706,
+              "status": "passed"
+            },
+            "line": 74,
+            "name": "Поставщик \"2\" входит в систему",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2",
+                  "offset": 11
+                }
+              ],
+              "location": "StepsDefinitions.supplierEntersSystem(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 4643226590,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "Поставщик открывает контракт через треугольник \u0027Подпишите контракт\u0027",
+            "match": {
+              "location": "StepsDefinitions.supplierOpensContractPageViaTrgSign()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 16445019207,
+              "status": "passed"
+            },
+            "line": 76,
+            "name": "Поставщик подписывает контракт",
+            "match": {
+              "location": "StepsDefinitions.supplierSignsContract()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 7287573333,
+              "status": "passed"
+            },
+            "line": 77,
+            "name": "Поставщик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.supplierExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 4555154241,
+              "status": "passed"
+            },
+            "line": 79,
+            "name": "Администратор входит в систему",
+            "match": {
+              "location": "StepsDefinitions.adminEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1271256734,
+              "status": "passed"
+            },
+            "line": 80,
+            "name": "Администратор открывает страницу сроков подписания контракта",
+            "match": {
+              "location": "StepsDefinitions.adminOpensContractAccelerationPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 183620679111,
+              "status": "passed"
+            },
+            "line": 81,
+            "name": "Администратор сдвигает регламентный срок подписания контракта",
+            "match": {
+              "location": "StepsDefinitions.adminAcceleratesContractConclusion()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 8437496580,
+              "status": "passed"
+            },
+            "line": 82,
+            "name": "Администратор выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.adminExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 10373908405,
+              "status": "passed"
+            },
+            "line": 84,
+            "name": "Заказчик входит в систему",
+            "match": {
+              "location": "StepsDefinitions.customerEntersSystem()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 15699364483,
+              "status": "passed"
+            },
+            "line": 85,
+            "name": "Заказчик открывает контракт через треугольник \u0027Подпишите контракт\u0027",
+            "match": {
+              "location": "StepsDefinitions.customerOpensContractPageViaTrgSing()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 4285146898,
+              "status": "passed"
+            },
+            "line": 86,
+            "name": "Заказчик подписывает контракт",
+            "match": {
+              "location": "StepsDefinitions.customerSignsContract()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 6871031961,
+              "status": "passed"
             },
             "line": 87,
+            "name": "Заказчик выходит из системы",
+            "match": {
+              "location": "StepsDefinitions.customerExitSystem()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 9433971,
+              "status": "passed"
+            },
+            "comments": [
+              {
+                "line": 90,
+                "value": "#When Поставщик безденежных выходит в систему"
+              },
+              {
+                "line": 91,
+                "value": "#And Поставщик делает поиск закупок"
+              },
+              {
+                "line": 92,
+                "value": "#Then Поставщик подает отложенные заявки"
+              }
+            ],
+            "line": 96,
             "name": "Закрытие файла отчета",
             "match": {
               "location": "StepsDefinitions.reportFileClose()"

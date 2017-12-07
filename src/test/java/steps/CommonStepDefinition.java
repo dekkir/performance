@@ -24,7 +24,7 @@ public class CommonStepDefinition extends AbstractStepDefinition{
     protected int delayTimeMs = 100000;
     protected int delayTime300 = 300000; //30000
     protected long pollingIntervalMs = 50;
-    protected int timeForIsDisplay1 = 5;
+    protected int timeForIsDisplay1 = 2;
     protected int timeForIsDisplay2 = 15; //30
 
     public CommonStepDefinition(){

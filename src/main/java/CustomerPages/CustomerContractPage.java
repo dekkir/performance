@@ -49,7 +49,7 @@ public class CustomerContractPage extends CustomerTenderCard{
         $(By.id(successButtonId)).shouldBe(Condition.visible);
         if(timeReport)
         System.out.println(timer.getCurrentTimeMillis());
-        $(By.id(successButtonId)).click();
+        $(By.id(successButtonId)).shouldBe(Condition.visible).click();
         Thread.currentThread().sleep(2000);
     }
 
@@ -76,7 +76,7 @@ public class CustomerContractPage extends CustomerTenderCard{
         $(By.id(downloadDocsButtonId)).shouldBe(Condition.visible).click();
         Thread.currentThread().sleep(1000);
         $(By.id(downloadDocsButtonInFirstPopUpId)).shouldBe(Condition.enabled).click();
-        Thread.currentThread().sleep(500);
+        Thread.currentThread().sleep(1000);
         $(By.id(downloadDocsButtonInPopUpId)).shouldBe(Condition.visible).click();
         System.out.println(timer.getCurrentTimeMillis());
         $(By.id(cancelDownloadButtonId)).shouldNotBe(Condition.visible);
@@ -89,9 +89,9 @@ public class CustomerContractPage extends CustomerTenderCard{
         Thread.currentThread().sleep(500);
         $(By.id(confirmationButtonId)).shouldBe(Condition.visible).click();
         System.out.println(timer.getCurrentTimeMillis());
+        Thread.currentThread().sleep(500);
         $(By.id(successButtonId)).shouldBe(Condition.visible);
         System.out.println(timer.getCurrentTimeMillis());
         $(By.id(successButtonId)).click();
     }
-
 }
