@@ -69,9 +69,7 @@ public class StepsDefinitions extends CommonStepDefinition{
     private AdminAuctionManagementPage adminAuctionManagementPage = new AdminAuctionManagementPage();
     private AdminContractConclusionAdministrationPage adminContractConclusionAdministrationPage = new AdminContractConclusionAdministrationPage();
 
-    private String logsPath = "C://Users//User3//IdeaProjects//Pr44//build//reports//logs//";
-    private String fileName;
-    public PrintStream printStream;
+    private PrintStream printStream;
 
     public StepsDefinitions(){
         super();
@@ -79,7 +77,8 @@ public class StepsDefinitions extends CommonStepDefinition{
 
     @Given("^Создается файл для метрик$")
     public void fileForReportCreate() throws IOException{
-        fileName = "supplierAndCustomerPerformanceTest.txt";
+        String logsPath = "C://Users//User3//IdeaProjects//Pr44//build//reports//logs//";
+        String fileName = "supplierAndCustomerPerformanceTest.txt";
         File file = new File(logsPath + fileName);
         printStream = new PrintStream(file);
         System.setOut(printStream);
@@ -160,8 +159,6 @@ public class StepsDefinitions extends CommonStepDefinition{
     @And("^Поставщик делает поиск закупок$")
     public void supplierWithoutMoneySearchForTrades(){
         supplierMainPage.mainMenuTradeSearchOpen();
-        //9999000041217011564
-        //9999000051217012602
     }
 
     @Then("^Поставщик подает отложенные заявки$")
