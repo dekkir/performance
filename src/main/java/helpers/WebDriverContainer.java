@@ -22,10 +22,10 @@ public class WebDriverContainer {
     }
 
     public WebDriverContainer(){
-        System.setProperty("webdriver.chrome.driver", "C:/Users/User3/my-rts/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
-        options.setBinary(new File("C:/Users/User3/my-rts/Chromium/chrome.exe"));
-        options.addExtensions(new File("C:/Users/User3/my-rts/cadesplugin.crx"));
+        options.setBinary(new File("Chromium/chrome.exe"));
+        options.addExtensions(new File("cadesplugin.crx"));
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         WebDriverRunner.setWebDriver(driver);
