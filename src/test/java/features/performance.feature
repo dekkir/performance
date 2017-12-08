@@ -1,3 +1,4 @@
+@performance
 Feature: performance test 1, collecting metric to excel file
 
   Scenario: go through all auction activities and open some other parts of site
